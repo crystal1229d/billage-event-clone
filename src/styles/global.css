@@ -76,31 +76,32 @@
   font-family: 'Pretendard-Medium';
   font-style: normal;
   font-weight: 400;
-  src: url(/assets/fonts/Pretendard-Medium.woff2) format("woff2");
+  src: url(/assets/fonts/Pretendard-Medium.woff2) format('woff2');
 }
 
 @font-face {
   font-family: 'Pretendard-Regular';
   font-style: normal;
   font-weight: 400;
-  src: url(/assets/fonts/Pretendard-Regular.woff2) format("woff2");
+  src: url(/assets/fonts/Pretendard-Regular.woff2) format('woff2');
 }
 
 @font-face {
   font-family: 'Pretendard-SemiBold';
   font-style: normal;
   font-weight: 700;
-  src: url(/assets/fonts/Pretendard-SemiBold.woff2) format("woff2");
+  src: url(/assets/fonts/Pretendard-SemiBold.woff2) format('woff2');
 }
 
 @font-face {
   font-family: 'Pretendard-Bold';
   font-style: normal;
   font-weight: 900;
-  src: url(/assets/fonts/Pretendard-Bold.woff2) format("woff2");
+  src: url(/assets/fonts/Pretendard-Bold.woff2) format('woff2');
 }
 
-html, body {
+html,
+body {
   font-family: 'Pretendard-Regular', '__Inter_e66fe9', sans-serif;
 }
 
@@ -115,7 +116,8 @@ a {
   text-decoration: none;
 }
 
-ul, ol {
+ul,
+ol {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -132,18 +134,15 @@ img {
 
 button {
   cursor: pointer;
-  background-color: #0070f3;
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 0;
+  margin: 0;
 }
 
-button:hover {
-  background-color: #005bb5;
-}
-
-input, textarea, select {
+input,
+textarea,
+select {
   font-family: inherit;
   font-size: inherit;
   padding: 8px;
@@ -151,14 +150,16 @@ input, textarea, select {
   border-radius: 4px;
 }
 
-input:focus, textarea:focus, select:focus {
+input:focus,
+textarea:focus,
+select:focus {
   border-color: #0070f3;
   outline: none;
 }
 
-
 @media (max-width: 1280px) {
-  .header, .navbar {
+  .header,
+  .navbar {
     width: 844px;
   }
 }

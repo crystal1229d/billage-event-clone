@@ -16,8 +16,12 @@ export default function RootLayout({
     <html lang="kr">
       <body className={inter.className}>
         <Header />
-        <UpperBanner />
-        <main className={styles.layout_main}>{children}</main>
+        <main className={styles.layout_main}>
+          <UpperBanner />
+          <div>
+            {children}
+          </div>
+        </main>
         <BottomBanner />
         <Footer />
       </body>
