@@ -1,29 +1,30 @@
 .bottom-banner {
-    background-color: #ff3855;
+  background-color: #ff3855;
 }
 
 .bottom-banner > div {
-    margin: auto;
-    display: flex;
-    align-items: center;
-    height: 152px;
-    justify-content: space-between;
+  width: 1280px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  height: 152px;
+  justify-content: space-between;
 }
 
 .banner-contents {
-    display: flex;
-    align-items: center;
-    color: #fff;
+  display: flex;
+  align-items: center;
+  color: #fff;
 }
 
 .banner-contents > h1 {
-    font-family: 'Pretendard-Bold';
-    font-size: 42px;
-    margin: 0;
+  font-family: 'Pretendard-Bold';
+  font-size: 42px;
+  margin: 0;
 }
 
 @media (max-width: 1280px) {
-  .bottom-banner > div{
+  .bottom-banner > div {
     width: 844px;
   }
 }
