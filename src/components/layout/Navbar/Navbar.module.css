@@ -10,9 +10,19 @@
 }
 
 .navList li {
-  font-size: inherit;
+  margin-top: 10px;
+
   color: #fff;
   font-family: 'Pretendard-Semibold';
+  font-size: 15px;
+  text-decoration: none;
+  border: none;
+  border-bottom: 3px solid #ff3855;
+  padding: 0 0 8px;
+}
+
+.navList li.active {
+  border-color: #fff;
 }
 
 @media (max-width: 844px) {
