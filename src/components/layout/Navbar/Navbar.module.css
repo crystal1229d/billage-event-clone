@@ -1,0 +1,22 @@
+.navbar {
+  margin-right: auto;
+  display: flex;
+}
+
+.navList {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+
+.navList li {
+  font-size: inherit;
+  color: #fff;
+  font-family: 'Pretendard-Semibold';
+}
+
+@media (max-width: 844px) {
+  .navbar {
+    display: none;
+  }
+}

@@ -1,0 +1,16 @@
+
+.logo_with_name img{
+  width: 131px;
+  height: 35px;
+  margin-right: 58px;
+  aspect-ratio: auto 225 / 60;
+  cursor: pointer;
+}
+
+.logo img {
+  height: 72px;
+  width: auto;
+  margin-right: 32px;
+  aspect-ratio: auto 216 / 216;
+  cursor: pointer;
+}
