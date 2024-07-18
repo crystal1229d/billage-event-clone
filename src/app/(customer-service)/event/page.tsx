@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
-import axios from 'axios'
 
 interface Event {
   id: string
@@ -17,22 +16,21 @@ const EventsPage: React.FC = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await axios.get('/api/events', {
-          params: {
-            size: 10, // 원하는 이벤트 개수
-            page: 1, // 원하는 페이지 번호
-          },
-        })
-        setEvents(response.data.events)
+        const response = await fetch('/eventApi/event?size=10&page=0&visibility=true');
+        if (!response.ok) {
+          throw new Error('Failed to fetch events');
+        }
+        const data = await response.json();
+        setEvents(data.events);
       } catch (err) {
-        setError('Failed to fetch events')
+        setError('Failed to fetch events');
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
+    };
 
-    fetchEvents()
-  }, [])
+    fetchEvents();
+  }, []);
 
   if (loading) {
     return <div>Loading...</div>

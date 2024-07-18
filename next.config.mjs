@@ -3,16 +3,12 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/api/events',
-        destination:
-          'https://frontapi.bbillage.com:3232/eventApi/event/:size/:page',
+        source: '/eventApi/:path*',
+        destination: 'https://frontapi.bbillage.com:3232/eventApi/:path*',
       },
-      {
-        source: '/api/event/:id',
-        destination: 'https://frontapi.bbillage.com:3232/eventApi/event/:id',
-      },
-    ]
+    ];
   },
-}
+  trailingSlash: true,
+};
 
-export default nextConfig
+export default nextConfig;
