@@ -40,18 +40,36 @@
   font-family: 'Pretendard-Bold';
 }
 
+.footer .mobile {
+  display: none;
+}
+
 @media (max-width: 1280px) {
   .footer > div {
     width: 844px;
-  }
-
-  .pc {
-    display: none;
   }
 }
 
 @media (max-width: 844px) {
   .footer > div {
     width: calc(100% - 40px);
+  }
+
+  .footerTop, 
+  .footerBottom {
+    display: block;
+  }
+  
+  .footerTop > div, 
+  .footerBottom > div {
+    width: 100%;
+  }
+
+  .footer .not-mobile {
+    display: none !important;
+  }
+
+  .footer .mobile {
+      display: block;
   }
 }

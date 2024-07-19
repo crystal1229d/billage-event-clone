@@ -157,9 +157,24 @@ select:focus {
   outline: none;
 }
 
+.mobile {
+  display: none;
+}
+
 @media (max-width: 1280px) {
   .header,
   .navbar {
     width: 844px;
+  }
+
+  .not-mobile, 
+  .pc {
+    display: none;
+  }
+}
+
+@media (max-width: 844px) {
+  .mobile {
+      display: block;
   }
 }
