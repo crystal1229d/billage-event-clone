@@ -1,6 +1,6 @@
 <div align='center'>
   <br /><br />
-  <div style="background-color:#ff3855; width:300px; padding:30px;border-radius:30px;">
+  <div style="background-color:#ff3855; width:300px; marginTop:30px;padding:30px;border-radius:30px;">
      <img src='public/assets/images/logo_with_name.webp' alt='logo' width='250' />
   </div>
   <br />
