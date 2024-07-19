@@ -9,6 +9,16 @@ const nextConfig = {
     ];
   },
   trailingSlash: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https", 
+        hostname: "s3.ap-northeast-2.amazonaws.com", 
+        port: '', 
+        pathname: '/image.village/**', 
+      }
+    ]
+  }
 };
 
 export default nextConfig;

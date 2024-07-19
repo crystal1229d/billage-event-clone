@@ -1,0 +1,21 @@
+.product-wrap {
+    width: 1280px;
+    margin: 32px auto;
+}
+
+.product-wrap img {
+    width: 100%;
+}
+
+@media (max-width: 1280px) {
+    .product-wrap {
+        width: 844px;
+    }
+}
+
+@media (max-width: 844px) {
+    .product-wrap {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+}
