@@ -12,10 +12,10 @@ export default function Navbar() {
   const [selectedNav, setSelectedNav] = useState('/event')
 
   useEffect(() => {
-    const currentPath = NAVIGATION.find((nav) => nav.link === location)
+    const currentPath = NAVIGATION.find((nav) => location.includes(nav.link))
     if (currentPath) {
       setSelectedNav(currentPath.label)
-    }
+    } 
   }, [location])
 
   return (
