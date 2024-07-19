@@ -1,0 +1,115 @@
+.card {
+    display: inline-block;
+    width: 408px;
+    text-align: center;
+    margin-bottom: 32px;
+    vertical-align: top;
+  }
+  
+  .card:nth-child(3n - 1) {
+    margin-right: 28px;
+    margin-left: 28px;
+  }
+  
+  .card a {
+    line-height: 0;
+    width: 408px !important;
+    height: 304px !important;
+    display: block;
+    background-size: 100%;
+    background-position: 50%;
+    border-radius: 20px;
+  }
+  
+  .cardContent {
+    padding: 0 10px;
+  }
+  
+  .cardContent > h3 {
+    width: 100%;
+    max-height: 55px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 20px;
+    text-align: left;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    margin-top: 16px;
+    margin-bottom: 8px;
+  }
+  
+  .badge {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 0 0 5px 0;
+    background: #aaa;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: "Pretendard-Regular";
+    font-weight: 400;
+    margin-right: 8px;
+    vertical-align: text-bottom;
+  }
+  
+  .badge.red {
+    background-color: #ff3855;
+  }
+  
+  .badge.blue {
+    background-color: blue;
+  }
+  
+  .cardContent p {
+    font-size: 16px;
+    font-family: "Pretendard-Medium";
+    display: flex;
+    justify-content: left;
+    color: #777;
+    margin: 0 0 10px;
+  }
+  
+  .cardContent p span:first-child {
+    text-align: left;
+    margin-right: 8px;
+  }
+  
+  .cardContent p span:last-child {
+    overflow: hidden;
+    text-align: left;
+    font-family: "Pretendard-Medium";
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  
+@media (max-width: 1280px) {
+    .card:nth-child(3n-1) {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .card:nth-child(2n) {
+        margin-right: 0;
+        margin-left: 14px;
+    }
+}
+
+@media (max-width: 844px) {
+    .card {
+        width: 100%;
+    }
+
+    .card:nth-child(2n), 
+    .card:nth-child(2n) {
+        margin-left: 0;
+    }
+
+    .card a {
+        width: 100% !important;
+        height: 162px !important;
+    }
+}
+  

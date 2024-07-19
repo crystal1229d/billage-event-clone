@@ -9,92 +9,6 @@
     margin-top: 32px;
 }
 
-.product-list .product {
-    display: inline-block;
-    width: 408px;
-    text-align: center;
-    margin-bottom: 32px;
-    vertical-align: top;
-}
-
-.product-list .product:nth-child(3n - 1) {
-    margin-right: 28px;
-    margin-left: 28px;
-}
-
-.product-list .product a {
-    line-height: 0;
-    width: 408px !important;
-    height: 304px !important;
-    display: block;
-    background-size: 100%;
-    background-position: 50%;
-    border-radius: 20px;
-}
-
-.product-list .product .product-content {
-    padding: 0 10px;
-}
-
-.product-content > h3 {
-    width: 100%;
-    max-height: 55px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: 20px;
-    text-align: left;
-    display: -webkit-box;
-    line-clamp: 2;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    margin-top: 16px;
-    margin-bottom: 8px;
-}
-
-.product-content .badge {
-    display: inline-block;
-    padding: 5px 10px;
-    margin: 0 0 5px 0;
-    background: #aaa;
-    color: #fff;
-    border-radius: 5px;
-    font-size: 16px;
-    font-family: "Pretendard-Regular";
-    font-weight: 400;
-    margin-right: 8px;
-    vertical-align: text-bottom;
-}
-
-.product-content .badge.red {
-    background-color: #ff3855;
-}
-.product-content .badge.blue {
-    background-color: blue;
-}
-
-
-.product-list .product .product-content p {
-    font-size: 16px;
-    font-family: "Pretendard-Medium";
-    display: flex;
-    justify-content: left;
-    color: #777;
-    margin: 0 0 10px;
-}
-
-.product-list .product .product-content p span:first-child {
-    text-align: left;
-    margin-right: 8px;
-}
-
-.product-list .product .product-content p span:last-child {
-    overflow: hidden;
-    text-align: left;
-    font-family: "Pretendard-Medium";
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
 @media (max-width: 1280px) {
     .product-wrap {
         width: 844px;
@@ -103,34 +17,10 @@
     .product-list {
         padding-left: 0;
     }
-
-    .product-list .product:nth-child(3n-1) {
-        margin-right: 0;
-        margin-left: 0;
-    }
-
-    .product-list .product:nth-child(2n) {
-        margin-right: 0;
-        margin-left: 14px;
-    }
 }
 
 @media (max-width: 844px) {
     .product-wrap, .product-wrap.detail {
         width: calc(100% - 40px);
-    }
-
-    .product-list .product {
-        width: 100%;
-    }
-
-    .product-list .product:nth-child(2n), 
-    .product-list .product:nth-child(2n) {
-        margin-left: 0;
-    }
-
-    .product-list .product a {
-        width: 100% !important;
-        height: 162px !important;
     }
 }
