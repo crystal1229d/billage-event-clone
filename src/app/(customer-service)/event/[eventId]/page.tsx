@@ -30,7 +30,7 @@ function EventDetailPage({ params: { eventId  }}: PageProps) {
 
   return (
     <div className={styles['product-wrap']}>
-      <Image src={`${BASE_IMAGE_URL}/${event.pc_img}`} alt={event.title} width={844} height={2374} style={{ verticalAlign: 'bottom' }} />
+      <Image src={`${BASE_IMAGE_URL}${event.pc_img}`} alt={event.title} width={844} height={2374} style={{ verticalAlign: 'bottom' }} />
     </div>
   );
 }

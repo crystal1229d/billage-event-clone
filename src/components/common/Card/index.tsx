@@ -21,7 +21,7 @@ function Card ({ event }: CardProps) {
 
   return (
     <div className={styles.card}>
-      <Link href={`/event/${idx}`} style={{ backgroundImage: `url(${`${BASE_IMAGE_URL}/${pc_thumbnail_img}`})` }} />
+      <Link href={`/event/${idx}`} style={{ backgroundImage: `url(${`${BASE_IMAGE_URL}${pc_thumbnail_img}`})` }} />
       <div className={styles.cardContent}>
         <h3 title={title}>
           <span className={`${styles.badge} ${ongoing ? styles.blue : styles.red}`}>
