@@ -4,6 +4,7 @@ import Link from 'next/link';
 import styles from './Card.module.css';
 import { formatDate } from '@/util';
 import { Event } from '@/types';
+import { BASE_IMAGE_URL } from '@/constants';
 
 interface CardProps {
   event: Event;
@@ -20,7 +21,7 @@ function Card ({ event }: CardProps) {
 
   return (
     <div className={styles.card}>
-      <Link href={`/event/${idx}`} style={{ backgroundImage: `url(${`https://s3.ap-northeast-2.amazonaws.com/image.village/${pc_thumbnail_img}`})` }} />
+      <Link href={`/event/${idx}`} style={{ backgroundImage: `url(${`${BASE_IMAGE_URL}/${pc_thumbnail_img}`})` }} />
       <div className={styles.cardContent}>
         <h3 title={title}>
           <span className={`${styles.badge} ${ongoing ? styles.blue : styles.red}`}>
