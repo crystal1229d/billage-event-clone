@@ -1,6 +1,6 @@
 <div align='center'>
 
-  <div style="background-color:#2e3136; width:300px; padding:30px;border-radius:50%;">
+  <div style="background-color:#ff3855; width:300px; padding:30px;border-radius:30px;">
      <img src='public/assets/images/logo_with_name.webp' alt='logo' width='250' />
   </div>
   <br />
@@ -42,49 +42,66 @@
 
 ## Preview / Features
 
-### >> [mobflix.com](https://mobflix-wheat.vercel.app/)
-
-<br />
 
 <div align='center'>
 
-<img src='/public/README/1.png' alt='preview' width='450' />
-<p>메인 페이지</p>
+<p>이벤트 페이지</p>
+<img src='/public/README/1.PNG' alt='preview' width='800' />
 
+<br /><br />
+
+<p>이벤트 상세 페이지 </p>
+<img src='/public/README/2.PNG' alt='preview' width='400' />
+
+<br /><br />
+
+<p>라우팅</p>
+<img src='/public/README/12.PNG' alt='preview' width='180' />
 <br />
+<img src='/public/README/3.PNG' alt='preview' width='350' />
+<img src='/public/README/4.PNG' alt='preview' width='350' />
+<br />
+<img src='/public/README/5.PNG' alt='preview' width='350' />
+<img src='/public/README/6.PNG' alt='preview' width='350' />
+<br />
+<img src='/public/README/7.PNG' alt='preview' width='350' />
+<img src='/public/README/9.PNG' alt='preview' width='350' />
+<br />
+<img src='/public/README/8.PNG' alt='preview' width='350' />
 
-<img src='/public/README/2.png' alt='preview' width='450' />
-<img src='/public/README/2-1.png' alt='preview' width='170' />
-<p>영화 페이지 - 영화 등록/삭제/수정</p>
+
+<br /><br />
+
+<p>반응형 스타일</p>
+<img src='/public/README/10.PNG' alt='preview' width='350' />
+<img src='/public/README/11.PNG' alt='preview' width='350' />
 
 </div>
 
 ## Features
 
-- 라우팅
-- 반응형
-- ...
+- Logo, Navbar를 통한 라우팅
+- 이벤트 목록 리스팅
+- 이벤트 상세보기 
+- 반응형 
 
 <br />
 
 ## TODO
 
 - [refactor] UpperBanner 에서 Swiper 분리
-- [fix] BottomBanner - 반응형 작업 (mobile, pc) Next.js 에서 mobile, pc 인식하는 방법 ?
-- [feat] Navbar - 반응형 작업 (hamburger menu detail)
-
-<br />
-
-- [chore] favicon 을 Logo 이미지로 변경
-- [doc] README 수정
+- [feat] UpperBanner - 반응형 작업 
+- [feat] Navbar - 반응형 작업 (hamburger menu)
 
 <br />
 
 ## Built With
 
-- [`React`](https://reactjs.org/)
+- [`Next.js`](https://nextjs.org/)
 
 - [`TypeScript`](https://www.typescriptlang.org/)
+
+- [`CSS Modules`](https://nextjs.org/docs/app/building-your-application/styling/css-modules)
 
 <br />
 
