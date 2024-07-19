@@ -15,7 +15,9 @@ export default function Navbar() {
     const currentPath = NAVIGATION.find((nav) => location.includes(nav.link))
     if (currentPath) {
       setSelectedNav(currentPath.label)
-    } 
+    } else {
+      setSelectedNav('/')
+    }
   }, [location])
 
   return (
