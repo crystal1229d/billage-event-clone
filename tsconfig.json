@@ -18,12 +18,13 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"], 
+      "@/*": ["./src/*"],
       "@/app/*": ["./src/app/*"],
       "@/components/*": ["./src/components/*"],
       "@/common/*": ["./src/components/common/*"],
       "@/layout/*": ["./src/components/layout/*"],
       "@/hooks/*": ["./src/hooks/*"],
+      "@/service/*": ["./src/service/*"],
       "@/styles/*": ["./src/styles/*"],
       "@/types/*": ["./src/types/*"],
       "@/utils/*": ["./src/utils/*"]
