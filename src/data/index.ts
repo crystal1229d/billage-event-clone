@@ -20,6 +20,3 @@ export const NAVIGATION = [
     link: '/faq',
   },
 ]
-
-export const BASE_IMAGE_URL =
-  'https://s3.ap-northeast-2.amazonaws.com/image.village/'

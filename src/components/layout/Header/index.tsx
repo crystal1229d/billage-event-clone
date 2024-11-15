@@ -1,18 +1,17 @@
 'use client'
 
-import Link from 'next/link';
-import Navbar from '@/layout/Navbar';
-
-import styles from './Header.module.css';
-import Logo from '@/common/Logo';
-import { useState } from 'react';
+import { useState } from 'react'
+import Link from 'next/link'
+import Navbar from '@/layout/Navbar'
+import Logo from '@/common/Logo'
+import styles from './Header.module.css'
 
 export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false)
 
   const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
+    setMenuOpen(!menuOpen)
+  }
 
   return (
     <header className={styles.header}>
@@ -20,16 +19,15 @@ export default function Header() {
         <Link href="/">
           <Logo />
         </Link>
-        <Navbar />
+        <div className={`${styles.navbar} ${menuOpen ? styles.open : ''}`}>
+          <Navbar />
+        </div>
         <div className={styles.hamburger} onClick={toggleMenu}>
           <span></span>
           <span></span>
           <span></span>
         </div>
       </div>
-      <div className={`${styles['mobile-menu']} ${menuOpen ? styles.open : ''}`}>
-        <Navbar />
-      </div>
     </header>
-  );
-};
+  )
+}

@@ -1,24 +1,24 @@
 'use client'
 
-import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
+import { useState } from 'react'
+import { NAVIGATION } from '@/data'
 import styles from './Navbar.module.css'
-import { usePathname } from 'next/navigation'
-import { useEffect, useState } from 'react'
-import { NAVIGATION } from '@/constants'
 
 export default function Navbar() {
   const location = usePathname()
+  const router = useRouter()
+  const currentPath = NAVIGATION.find(
+    (nav) => location === nav.link || location === `${nav.link}/`,
+  )
+  const [selectedNav, setSelectedNav] = useState(
+    currentPath ? currentPath.label : '/',
+  )
 
-  const [selectedNav, setSelectedNav] = useState('/event')
-
-  useEffect(() => {
-    const currentPath = NAVIGATION.find((nav) => location.includes(nav.link))
-    if (currentPath) {
-      setSelectedNav(currentPath.label)
-    } else {
-      setSelectedNav('/')
-    }
-  }, [location])
+  const handleClick = (label: string, link: string) => {
+    setSelectedNav(label)
+    router.push(link)
+  }
 
   return (
     <nav className={styles.navbar}>
@@ -26,10 +26,10 @@ export default function Navbar() {
         {NAVIGATION.map(({ label, link }) => (
           <li
             key={label}
-            onClick={() => setSelectedNav(label)}
+            onClick={() => handleClick(label, link)}
             className={selectedNav === label ? styles.active : undefined}
           >
-            <Link href={link}>{label}</Link>
+            {label}
           </li>
         ))}
       </ul>
