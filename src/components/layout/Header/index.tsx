@@ -1,30 +1,33 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
-import Navbar from '@/layout/Navbar'
 import Logo from '@/common/Logo'
+import Navbar from '@/layout/Navbar'
+import HambugerMenu from './HamburgerMenuButton'
+import CloseButton from '@/common/CloseButton'
+import SideNavbar from '@/layout/SideNavbar'
 import styles from './Header.module.css'
 
 export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [isSideNavShown, setSideNavShown] = useState(false)
 
   const toggleMenu = () => {
-    setMenuOpen(!menuOpen)
+    setSideNavShown((prev) => !prev)
+  }
+
+  const closeSideNav = () => {
+    setSideNavShown(false)
   }
 
   return (
     <header className={styles.header}>
       <div className={styles['header-content']}>
         <Logo linked={true} />
-        <div className={`${styles.navbar} ${menuOpen ? styles.open : ''}`}>
-          <Navbar />
-        </div>
+        <Navbar />
         <div className={styles.hamburger} onClick={toggleMenu}>
-          <span></span>
-          <span></span>
-          <span></span>
+          {!isSideNavShown ? <HambugerMenu /> : <CloseButton />}
         </div>
+        <SideNavbar isVisible={isSideNavShown} onClose={closeSideNav} />
       </div>
     </header>
   )
