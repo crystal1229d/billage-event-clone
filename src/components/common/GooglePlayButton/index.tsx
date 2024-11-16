@@ -1,8 +1,15 @@
+'use client'
+
+import { GooglePlayStoreUrl } from '@/data'
 import Image from 'next/image'
 
 export default function GooglePlayButton() {
+  const handleClick = () => {
+    window.open(GooglePlayStoreUrl, '_blank')
+  }
+
   return (
-    <button>
+    <button onClick={handleClick}>
       <Image
         src={`/assets/images/googlePlayBtn.png`}
         width={162}

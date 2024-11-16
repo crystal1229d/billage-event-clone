@@ -41,3 +41,8 @@ export const BANNERS = [
     description: '공간만 차지하는 내 물건들 렌탈료 받고 빌려줘 보세요.',
   },
 ]
+
+export const GooglePlayStoreUrl =
+  'https://play.google.com/store/apps/details?id=app.dejay.village&pli=1'
+export const AppStoreUrl =
+  'https://apps.apple.com/us/app/%EB%B9%8C%EB%A6%AC%EC%A5%90-%EC%A7%80%EC%97%AD-%EA%B8%B0%EB%B0%98-%EB%AC%BC%EA%B1%B4-%EB%8C%80%EC%97%AC-%EC%95%B1/id6458730663'
