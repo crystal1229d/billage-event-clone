@@ -100,6 +100,10 @@
   src: url(/assets/fonts/Pretendard-Bold.woff2) format('woff2');
 }
 
+:root {
+  --swiper-theme-color: #ff3855;
+}
+
 html,
 body {
   font-family: 'Pretendard-Regular', '__Inter_e66fe9', sans-serif;
@@ -132,6 +136,27 @@ img {
   box-sizing: border-box;
 }
 
+h2 {
+  display: block;
+  font-size: 1.5em;
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  unicode-bidi: isolate;
+}
+h3 {
+  display: block;
+  font-size: 1.17em;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  unicode-bidi: isolate;
+}
+
 button {
   cursor: pointer;
   color: white;
@@ -157,6 +182,7 @@ select:focus {
   outline: none;
 }
 
+.not-pic,
 .mobile {
   display: none;
 }
@@ -167,14 +193,23 @@ select:focus {
     width: 844px;
   }
 
-  .not-mobile, 
   .pc {
     display: none;
+  }
+
+  .tablet,
+  .not-pc {
+    display: flex;
   }
 }
 
 @media (max-width: 844px) {
+  .not-mobile,
+  .pc,
+  .tablet {
+    display: none !important;
+  }
   .mobile {
-      display: block;
+    display: block;
   }
 }

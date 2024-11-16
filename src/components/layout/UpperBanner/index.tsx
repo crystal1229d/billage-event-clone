@@ -3,9 +3,10 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react'
-import { Navigation } from 'swiper/modules'
+import { Navigation, Pagination } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/navigation'
+import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
 import { BANNERS } from '@/data'
 import styles from './UpperBanner.module.css'
@@ -17,13 +18,18 @@ export default function UpperBanner() {
     <div className={`${styles['upper-banner']}`}>
       <div className={styles.infoList}>
         <Swiper
-          modules={[Navigation]}
+          modules={[Navigation, Pagination]}
           slidesPerView={1}
           loop={true}
           onSwiper={setSwiper}
           navigation={{
             prevEl: `.${styles['swiper-button-prev']}`,
             nextEl: `.${styles['swiper-button-next']}`,
+          }}
+          pagination={{
+            dynamicBullets: true,
+            clickable: false,
+            el: `.${styles['swiper-custom-pagination']}`,
           }}
         >
           {BANNERS.map((banner, index) => (
@@ -71,6 +77,8 @@ export default function UpperBanner() {
             </div>
           </div>
         )}
+
+        <div className={styles['swiper-custom-pagination']}></div>
       </div>
     </div>
   )
