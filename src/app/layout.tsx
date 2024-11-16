@@ -1,11 +1,12 @@
 import '@/styles/global.css'
 import { inter } from '@/app/fonts'
-import styles from '@/app/layout.module.css'
 
 import Header from '@/layout/Header'
-import Footer from '@/layout/Footer'
-import BottomBanner from '@/layout/BottomBanner'
+import AboutBanner from '@/components/layout/AboutBanner'
 import UpperBanner from '@/layout/UpperBanner'
+import BottomBanner from '@/layout/BottomBanner'
+import Footer from '@/layout/Footer'
+import styles from '@/app/layout.module.css'
 
 export default function RootLayout({
   children,
@@ -17,6 +18,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Header />
         <main className={styles['layout-main']}>
+          <AboutBanner />
           <UpperBanner />
           <div className={styles['layout-wrap']}>{children}</div>
         </main>

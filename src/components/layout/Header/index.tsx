@@ -16,9 +16,7 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <div className={styles['header-content']}>
-        <Link href="/">
-          <Logo />
-        </Link>
+        <Logo linked={true} />
         <div className={`${styles.navbar} ${menuOpen ? styles.open : ''}`}>
           <Navbar />
         </div>

@@ -1,7 +1,7 @@
 'use client'
 
 import { usePathname, useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { NAVIGATION } from '@/data'
 import styles from './Navbar.module.css'
 
@@ -14,6 +14,13 @@ export default function Navbar() {
   const [selectedNav, setSelectedNav] = useState(
     currentPath ? currentPath.label : '/',
   )
+
+  useEffect(() => {
+    const updatedPath = NAVIGATION.find(
+      (nav) => location === nav.link || location === `${nav.link}/`,
+    )
+    setSelectedNav(updatedPath ? updatedPath.label : '/')
+  }, [location])
 
   const handleClick = (label: string, link: string) => {
     setSelectedNav(label)

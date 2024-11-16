@@ -1,6 +1,6 @@
 import { getEvents } from '@/service/event'
 import { Event } from '@/types'
-import Card from '@/common/Card'
+import EventItem from '@/components/event/EventItem'
 import styles from './page.module.css'
 
 export default async function EventsPage() {
@@ -11,7 +11,7 @@ export default async function EventsPage() {
       <div className={styles['product-list']}>
         {events &&
           events.list.map((event: Event) => (
-            <Card key={event.event_idx} event={event} />
+            <EventItem key={event.event_idx} event={event} />
           ))}
       </div>
     </div>

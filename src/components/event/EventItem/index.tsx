@@ -1,9 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
-
 import { formatDate } from '@/utils'
 import { Event } from '@/types'
-import styles from './Card.module.css'
+import styles from './EventItem.module.css'
 
 interface Props {
   event: Event
@@ -14,7 +13,7 @@ const isOngoing = (start: number, end: number) => {
   return now >= start && now <= end
 }
 
-function Card({ event }: Props) {
+function EventItem({ event }: Props) {
   const {
     event_idx: idx,
     start_date,
@@ -63,4 +62,4 @@ function Card({ event }: Props) {
   )
 }
 
-export default Card
+export default EventItem

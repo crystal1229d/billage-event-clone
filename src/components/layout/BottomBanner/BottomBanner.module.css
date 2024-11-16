@@ -29,6 +29,10 @@
   margin: 0;
 }
 
+.bottom-banner .btn-box button:first-child {
+  margin-right: 10px;
+}
+
 @media (max-width: 1280px) {
   .bottom-banner > div {
     width: 844px;
@@ -36,7 +40,7 @@
 
   .bottom-banner .btn-box {
     display: none;
-}
+  }
 }
 
 @media (max-width: 844px) {
@@ -48,8 +52,8 @@
   }
 
   .bottom-banner h1 {
-      font-size: 46px;
-      word-break: keep-all;
+    font-size: 46px;
+    word-break: keep-all;
   }
 
   .banner-contents img {
