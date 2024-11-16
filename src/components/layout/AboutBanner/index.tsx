@@ -12,20 +12,20 @@ export default function AboutBanner() {
   if (pathname !== '/') return null
 
   return (
-    <div className={`${styles['page1']}`}>
-      <div className={`${styles['info1 sb']}`}>
+    <div className={styles['wrapper']}>
+      <div className={styles['inner-wrapper']}>
         <div>
           <h1>
             지역기반
             <br />
             대여 플랫폼 빌리쥐
           </h1>
-          <div className={`${styles['info1 btn-box']}`}>
+          <div className={styles['btn-box']}>
             <GooglePlayButton />
             <AppStoreButton />
           </div>
         </div>
-        <div className={`${styles['info1-img']}`}>
+        <div className={styles['img-box']}>
           <Image
             src="/assets/images/img_content_visual.webp"
             alt="빌리쥐 소개"
