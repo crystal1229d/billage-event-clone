@@ -15,7 +15,7 @@ export default function SideNavbar({ isVisible, onClose }: Props) {
   const currentPath = NAVIGATION.find(
     (nav) => location === nav.link || location === `${nav.link}/`,
   )
-  console.log('location : ', location, ' / currentPath : ', currentPath)
+
   const handleClick = (link: string) => {
     onClose()
     router.push(link)

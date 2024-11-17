@@ -1,0 +1,99 @@
+/* 공통 스타일 */
+.about-item-wrapper {
+  max-width: 1280px;
+  height: fit-content;
+  margin: auto;
+  padding: 100px 0;
+
+  display: grid;
+  align-items: center;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 1fr;
+  column-gap: 10px;
+
+  grid-template-areas: 'content image';
+}
+.about-item-wrapper:last-child {
+  /* 마지막 소개 콘텐츠 */
+  margin-bottom: 215px;
+}
+.about-item-wrapper > div:first-child {
+  display: flex;
+  flex-direction: column;
+}
+.about-item-wrapper > div:last-child img {
+  width: 100%;
+  height: auto;
+}
+.about-item-wrapper h1 {
+  font-family: 'Pretendard-Bold';
+  font-size: 46px;
+  margin-top: 24px;
+  word-break: keep-all;
+}
+.about-item-wrapper h2 {
+  font-family: 'Pretendard-Medium';
+  font-size: 20px;
+  font-weight: 550;
+  margin-top: 24px;
+  line-height: 32px;
+  word-break: keep-all;
+}
+
+/* 짝수 : 우측 정렬 */
+.about-item-wrapper.even > div:first-child {
+  text-align: right;
+  grid-area: content;
+}
+.about-item-wrapper.even > div:last-child {
+  grid-area: image;
+}
+.about-item-wrapper.even > div:first-child img {
+  margin-left: auto;
+}
+
+/* 홀수 : 좌측 정렬 */
+.about-item-wrapper.odd > div:first-child {
+  grid-area: image;
+}
+.about-item-wrapper.odd > div:last-child {
+  grid-area: content;
+}
+.about-item-wrapper.odd > div:first-child img {
+  margin-right: auto;
+}
+.about-item-wrapper.odd h1,
+.about-item-wrapper.odd h2 {
+  text-align: left;
+}
+
+@media (max-width: 844px) {
+  .about-item-wrapper {
+    width: calc(100% - 40px);
+    padding: 36px 0;
+    margin: auto;
+
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  .about-item-wrapper > div:first-child {
+    width: 100%;
+  }
+  .about-item-wrapper > div:first-child img,
+  .about-item-wrapper.even > div:first-child img {
+    margin-left: 0;
+    margin-right: auto;
+  }
+  .about-item-wrapper h1 {
+    font-size: 36px;
+    text-align: left;
+    margin-bottom: 0;
+  }
+  .about-item-wrapper h2 {
+    text-align: left;
+  }
+  .about-item-wrapper > div:last-child {
+    width: 100%;
+  }
+}

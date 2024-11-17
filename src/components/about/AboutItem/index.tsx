@@ -1,14 +1,20 @@
 import { AboutGuide } from '@/types'
 import Image from 'next/image'
+import styles from './AboutItem.module.css'
 
 interface Props {
   about: AboutGuide
+  index: number
 }
 
-export default function AboutItem({ about }: Props) {
+export default function AboutItem({ about, index }: Props) {
+  const isEven = index % 2 === 0 // 짝수
+
   return (
-    <div>
-      <div key={about.title} style={{ textAlign: 'right' }}>
+    <div
+      className={`${styles['about-item-wrapper']} ${isEven ? styles['even'] : styles['odd']}`}
+    >
+      <div key="content" className={styles['content-area']}>
         <Image
           src={about.icon}
           alt={about.iconAlt}
@@ -16,10 +22,10 @@ export default function AboutItem({ about }: Props) {
           height={48}
           loading="lazy"
         />
-        <h1>{about.title}</h1>
-        <h2>{about.description}</h2>
+        <h1 dangerouslySetInnerHTML={{ __html: about.title }} />
+        <h2 dangerouslySetInnerHTML={{ __html: about.description }} />
       </div>
-      <div>
+      <div key="image" className={styles['image-area']}>
         <Image
           src={about.image}
           alt={about.imageAlt}

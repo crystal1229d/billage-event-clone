@@ -1,26 +1,27 @@
 .product-wrap {
-    width: 1280px;
-    margin: 32px auto;
+  width: 1280px;
+  margin: 32px auto;
 }
 
 .product-list {
-    width: 100%;
-    text-align: left;
-    margin-top: 32px;
+  width: 100%;
+  text-align: left;
+  margin-top: 32px;
 }
 
 @media (max-width: 1280px) {
-    .product-wrap {
-        width: 844px;
-    }
+  .product-wrap {
+    width: 844px;
+  }
 
-    .product-list {
-        padding-left: 0;
-    }
+  .product-list {
+    padding-left: 0;
+  }
 }
 
 @media (max-width: 844px) {
-    .product-wrap, .product-wrap.detail {
-        width: calc(100% - 40px);
-    }
+  .product-wrap,
+  .product-wrap.detail {
+    width: calc(100% - 40px);
+  }
 }
