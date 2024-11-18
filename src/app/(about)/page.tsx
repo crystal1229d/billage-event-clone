@@ -1,5 +1,5 @@
 import AboutItem from '@/components/about/AboutItem'
-import { ABOUT_GUIDES } from '@/data'
+import { ABOUT_GUIDES } from '@/constants'
 import { AboutGuide } from '@/types'
 import { Fragment } from 'react'
 

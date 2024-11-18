@@ -8,7 +8,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
-import { BANNERS } from '@/data'
+import { BANNERS } from '@/constants'
 import styles from './UpperBanner.module.css'
 
 export default function UpperBanner() {

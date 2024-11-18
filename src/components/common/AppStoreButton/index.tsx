@@ -1,6 +1,6 @@
 'use client'
 
-import { AppStoreUrl } from '@/data'
+import { AppStoreUrl } from '@/constants'
 import Image from 'next/image'
 
 export default function AppStoreButton() {

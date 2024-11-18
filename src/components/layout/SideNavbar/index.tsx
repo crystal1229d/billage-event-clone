@@ -1,7 +1,7 @@
 'use client'
 
 import { usePathname, useRouter } from 'next/navigation'
-import { NAVIGATION } from '@/data'
+import { NAVIGATION } from '@/constants'
 import styles from './SideNavbar.module.css'
 
 interface Props {

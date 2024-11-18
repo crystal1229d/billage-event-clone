@@ -1,6 +1,6 @@
 'use client'
 
-import { GooglePlayStoreUrl } from '@/data'
+import { GooglePlayStoreUrl } from '@/constants'
 import Image from 'next/image'
 
 export default function GooglePlayButton() {

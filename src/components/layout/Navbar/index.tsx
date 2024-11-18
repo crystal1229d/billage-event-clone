@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
-import { NAVIGATION } from '@/data'
+import { NAVIGATION } from '@/constants'
 import styles from './Navbar.module.css'
 
 export default function Navbar() {
