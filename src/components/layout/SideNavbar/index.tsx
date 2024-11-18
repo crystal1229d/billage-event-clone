@@ -1,8 +1,9 @@
 'use client'
 
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { NAVIGATION } from '@/constants'
 import styles from './SideNavbar.module.css'
+import Link from 'next/link'
 
 interface Props {
   isVisible: boolean
@@ -11,15 +12,9 @@ interface Props {
 
 export default function SideNavbar({ isVisible, onClose }: Props) {
   const location = usePathname()
-  const router = useRouter()
   const currentPath = NAVIGATION.find(
     (nav) => location === nav.link || location === `${nav.link}/`,
   )
-
-  const handleClick = (link: string) => {
-    onClose()
-    router.push(link)
-  }
 
   return (
     <nav
@@ -29,10 +24,9 @@ export default function SideNavbar({ isVisible, onClose }: Props) {
         {NAVIGATION.map(({ label, link }) => (
           <li
             key={label}
-            onClick={() => handleClick(link)}
             className={currentPath?.label === label ? styles.active : undefined}
           >
-            <span>{label}</span>
+            <Link href={link}>{label}</Link>
           </li>
         ))}
       </ul>

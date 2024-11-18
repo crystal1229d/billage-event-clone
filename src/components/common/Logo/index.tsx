@@ -1,8 +1,8 @@
 'use client'
 
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
 import styles from './Logo.module.css'
+import Link from 'next/link'
 
 interface Props {
   with_name?: boolean
@@ -15,35 +15,27 @@ export default function Logo({
   linked = false,
   to = '/',
 }: Props) {
-  const router = useRouter()
-
-  const handleClick = () => router.push(to)
-
   const logoContent = (
-    <div
-      className={with_name ? styles.logo_with_name : styles.logo}
-      onClick={linked ? handleClick : undefined}
-      style={{ cursor: linked ? 'pointer' : 'default' }}
-    >
-      {with_name ? (
-        <Image
-          src="/assets/images/logo_with_name.webp"
-          alt="bbillage logo"
-          width={131}
-          height={35}
-          loading="lazy"
-        />
-      ) : (
-        <Image
-          src="/assets/images/logo.png"
-          alt="bbillage logo"
-          width={131}
-          height={35}
-          loading="lazy"
-        />
-      )}
+    <div className={with_name ? styles.logo_with_name : styles.logo}>
+      <Image
+        src={
+          with_name
+            ? '/assets/images/logo_with_name.webp'
+            : '/assets/images/logo.png'
+        }
+        alt="bbillage logo"
+        width={131}
+        height={35}
+        loading="lazy"
+      />
     </div>
   )
 
-  return logoContent
+  return linked ? (
+    <Link href={to} className={styles.link}>
+      {logoContent}
+    </Link>
+  ) : (
+    logoContent
+  )
 }
