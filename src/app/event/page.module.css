@@ -22,6 +22,6 @@
 @media (max-width: 844px) {
   .product-wrap,
   .product-wrap.detail {
-    width: calc(100% - 40px);
+    width: 100%;
   }
 }
