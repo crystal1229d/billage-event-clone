@@ -44,9 +44,16 @@ export default function UpperBanner() {
                     loading="lazy"
                   />
                 </div>
-                <div>
+                <div className="not-mobile">
                   <h2>{banner.title}</h2>
                   <h3>{banner.description}</h3>
+                </div>
+                <div className="mobile">
+                  <h2
+                    dangerouslySetInnerHTML={{
+                      __html: banner.short_description,
+                    }}
+                  />
                 </div>
               </div>
             </SwiperSlide>
