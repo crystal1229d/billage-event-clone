@@ -8,8 +8,10 @@ interface Props {
   }
 }
 
-export default async function EventDetailPage({ params: { eventId } }: Props) {
-  const { data: event } = await getEventById(eventId)
+export default async function EventDetailPage({ params }: Props) {
+  const { eventId } = params
+  const requestParams = { id: eventId }
+  const { data: event } = await getEventById(requestParams)
 
   return (
     <div className={styles['product-wrap']}>
