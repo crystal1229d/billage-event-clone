@@ -1,0 +1,127 @@
+.panner-wrapper {
+  width: 100%;
+  display: grid;
+  row-gap: 15px;
+  grid-template-areas:
+    'selectlis'
+    'search';
+}
+.panner-wrapper button {
+  font-size: 18px;
+  font-family: 'Pretendard-Medium';
+  transition: 0.5s ease;
+}
+
+.search-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* 카테고리 버튼 */
+.btn-category {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 5px;
+  border: 1px solid #efefef;
+  margin: 0;
+  border-color: #1f1f1f;
+}
+.btn-category img {
+  width: 24px;
+  height: auto;
+}
+/* 카테고리 버튼 */
+
+/* 검색창 */
+.search-wrapper .input-wrapper {
+  width: 626px;
+  display: flex;
+  margin-right: -40px;
+}
+.input-wrapper button {
+  position: relative;
+  margin: 0;
+  right: 35px;
+}
+.input-wrapper button img {
+  width: 24px;
+  height: 24px;
+}
+.panner-wrapper input {
+  width: calc(100% - 40px);
+}
+
+/* select box */
+.selectlist-wrapper {
+  display: flex;
+  gap: 28px;
+}
+
+.select-wrapper,
+.select-wrapper select {
+  width: 263px;
+}
+.select-wrapper .icon-arrow {
+  position: absolute;
+  right: 1px;
+  background: #eee;
+  top: 1px;
+  height: 40px;
+  border-radius: 40px;
+  line-height: 51px;
+  width: 40px;
+  transition: 0.3s;
+  text-align: center;
+}
+
+@media (min-width: 1280px) {
+  .panner-wrapper {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    row-gap: 20px;
+  }
+
+  .btn-category {
+    display: none;
+  }
+
+  .select-wrapper,
+  .select-wrapper select {
+    width: 200px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .search-wrapper {
+    flex-direction: row;
+  }
+
+  .selectlist-wrapper {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 844px) {
+  .search-wrapper {
+    flex-direction: row;
+  }
+
+  .selectlist-wrapper {
+    flex-direction: column;
+  }
+
+  .select-wrapper,
+  .select-wrapper select,
+  .search-wrapper .input-wrapper {
+    width: 100%;
+  }
+
+  .search-wrapper .input-wrapper {
+    margin-left: 15px;
+  }
+}

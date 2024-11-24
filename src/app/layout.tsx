@@ -3,10 +3,12 @@ import '@/styles/global.css'
 import { inter } from '@/app/fonts'
 
 import Header from '@/layout/Header'
-import AboutBanner from '@/components/layout/AboutBanner'
+import AboutBanner from '@/layout/AboutBanner'
 import UpperBanner from '@/layout/UpperBanner'
+import InstargramBanner from '@/layout/InstargramBanner'
 import BottomBanner from '@/layout/BottomBanner'
 import Footer from '@/layout/Footer'
+
 import styles from '@/app/layout.module.css'
 
 export const metadata: Metadata = {
@@ -20,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" suppressHydrationWarning>
       <body className={inter.className}>
         <Header />
         <main className={styles['layout-main']}>
@@ -28,6 +30,7 @@ export default function RootLayout({
           <UpperBanner />
           <div className={styles['layout-wrap']}>{children}</div>
         </main>
+        <InstargramBanner />
         <BottomBanner />
         <Footer />
       </body>
