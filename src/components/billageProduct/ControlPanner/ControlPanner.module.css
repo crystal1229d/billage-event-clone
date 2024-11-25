@@ -54,29 +54,17 @@
 .panner-wrapper input {
   width: calc(100% - 40px);
 }
+/* 검색창 */
 
-/* select box */
+/* 셀렉트박스 */
 .selectlist-wrapper {
-  display: flex;
+  display: none;
   gap: 28px;
 }
-
-.select-wrapper,
-.select-wrapper select {
-  width: 263px;
+.selectlist-wrapper.visible {
+  display: flex;
 }
-.select-wrapper .icon-arrow {
-  position: absolute;
-  right: 1px;
-  background: #eee;
-  top: 1px;
-  height: 40px;
-  border-radius: 40px;
-  line-height: 51px;
-  width: 40px;
-  transition: 0.3s;
-  text-align: center;
-}
+/* 셀렉트박스 */
 
 @media (min-width: 1280px) {
   .panner-wrapper {
@@ -90,8 +78,10 @@
     display: none;
   }
 
-  .select-wrapper,
-  .select-wrapper select {
+  .selectlist-wrapper {
+    display: flex;
+  }
+  .selectlist-wrapper > button {
     width: 200px;
   }
 }
@@ -113,10 +103,10 @@
 
   .selectlist-wrapper {
     flex-direction: column;
+    row-gap: 12px;
   }
 
-  .select-wrapper,
-  .select-wrapper select,
+  .selectlist-wrapper > button,
   .search-wrapper .input-wrapper {
     width: 100%;
   }

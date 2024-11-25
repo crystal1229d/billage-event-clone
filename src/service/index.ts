@@ -22,19 +22,18 @@ const httpRequest = async (url: string, options: HttpRequestOptions) => {
 
     const isFormData = data instanceof FormData
 
-    const response = await fetch(
-      `${isServer ? process.env.NEXT_PUBLIC_API_BASE_URL : ''}${url}`,
-      {
-        method,
-        headers: {
-          ...headers,
-          ...(isFormData ? {} : { 'Content-Type': 'application/json' }),
-        },
-        body: isFormData ? data : JSON.stringify(data),
-        cache,
-        next,
+    const response = await fetch(`${isServer ? getBaseUrl(url) : ''}${url}`, {
+      method,
+      headers: {
+        ...headers,
+        ...(isFormData ? {} : { 'Content-Type': 'application/json' }),
       },
-    )
+      body: isFormData ? data : JSON.stringify(data),
+      cache,
+      next,
+    })
+
+    console.log('response : ', response)
 
     if (!response.ok) {
       console.error(
@@ -51,6 +50,15 @@ const httpRequest = async (url: string, options: HttpRequestOptions) => {
   } catch (error) {
     return { error: error instanceof Error ? error.message : 'Unknown error' }
   }
+}
+
+const getBaseUrl = (url: string) => {
+  if (url.startsWith('/eventApi')) {
+    return process.env.NEXT_PUBLIC_EVENT_API_BASE_URL
+  } else if (url.startsWith('/api')) {
+    return process.env.NEXT_PUBLIC_RENTAL_API_BASE_URL
+  }
+  return ''
 }
 
 export default httpRequest

@@ -1,0 +1,12 @@
+.select-wrapper {
+  width: 263px;
+  height: 48px;
+  font-family: 'Pretendard-Medium';
+  border-radius: 5px;
+  background: #eee;
+  border: none;
+  color: #1f1f1f;
+}
+.select-wrapper span {
+  font-size: 14px;
+}

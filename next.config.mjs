@@ -4,7 +4,11 @@ const nextConfig = {
     return [
       {
         source: '/eventApi/:path*',
-        destination: `${process.env.NEXT_PUBLIC_API_BASE_URL}/eventApi/:path*`,
+        destination: `${process.env.NEXT_PUBLIC_EVENT_API_BASE_URL}/eventApi/:path*`,
+      },
+      {
+        source: '/api/:path*',
+        destination: `${process.env.NEXT_PUBLIC_RENTAL_API_BASE_URL}/api/:path*`,
       },
     ]
   },
