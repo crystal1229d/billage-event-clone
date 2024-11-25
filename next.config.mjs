@@ -4,7 +4,7 @@ const nextConfig = {
     return [
       {
         source: '/eventApi/:path*',
-        destination: 'http://3.37.157.86:3232/eventApi/:path*',
+        destination: `${process.env.NEXT_PUBLIC_API_BASE_URL}/eventApi/:path*`,
       },
     ]
   },

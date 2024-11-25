@@ -1,20 +1,18 @@
-interface HttpRequest {
+interface HttpRequestOptions extends RequestInit {
   method: 'get' | 'post' | 'put' | 'patch' | 'delete'
-  headers?: HeadersInit
   data?: Record<string, unknown> | object | FormData
   params?: Record<string, unknown>
-  cache?: 'force-cache' | 'no-store' // force-cache: SSG, no-store: SSR
   next?: {
-    // ISR
     revalidate: number
   }
 }
 
-const httpRequest = async (
-  url: string,
-  { method, headers, data, params, cache, next }: HttpRequest,
-) => {
+const isServer = typeof window === 'undefined'
+
+const httpRequest = async (url: string, options: HttpRequestOptions) => {
   try {
+    const { method, headers, data, params, cache, next, ...rest } = options
+
     if (params) {
       const urlParams = new URLSearchParams(
         params as Record<string, string>,
@@ -25,7 +23,7 @@ const httpRequest = async (
     const isFormData = data instanceof FormData
 
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}${url}`,
+      `${isServer ? process.env.NEXT_PUBLIC_API_BASE_URL : ''}${url}`,
       {
         method,
         headers: {
@@ -35,7 +33,6 @@ const httpRequest = async (
         body: isFormData ? data : JSON.stringify(data),
         cache,
         next,
-        credentials: 'omit',
       },
     )
 
