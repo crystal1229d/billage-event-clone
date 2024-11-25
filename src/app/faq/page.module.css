@@ -1,0 +1,10 @@
+.fap-page {
+  width: 100%;
+  margin: 32px auto;
+}
+
+@media (min-width: 1280px) {
+  .product-page {
+    width: 1280px;
+  }
+}
