@@ -13,9 +13,13 @@
 
   border-radius: 50px;
   background-color: #f5f5f5;
+  color: #1f1f1f;
+}
+.category-wrapper li.active {
+  background-color: #ff3855;
+  color: #fff;
 }
 .category-wrapper button {
-  color: #1f1f1f;
   font-size: 17px;
   font-family: 'Pretendard-SemiBold';
   cursor: pointer;

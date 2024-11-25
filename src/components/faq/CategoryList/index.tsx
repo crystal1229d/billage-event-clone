@@ -4,7 +4,7 @@ import styles from './CategoryList.module.css'
 interface Props {
   faqGuides: FAQGuide[]
   activeCategory: string
-  onClickCategory: () => void
+  onClickCategory: (category: FAQGuide['category']) => void
 }
 
 export default function CategoryList({
@@ -15,8 +15,11 @@ export default function CategoryList({
   return (
     <ul className={styles['category-wrapper']}>
       {faqGuides.map((guide: FAQGuide) => (
-        <li key={guide.category}>
-          <button className={styles['active-category']}>
+        <li
+          key={guide.category}
+          className={`${activeCategory === guide.category ? styles['active'] : ''}`}
+        >
+          <button onClick={() => onClickCategory(guide.category)}>
             {guide.category}
           </button>
         </li>

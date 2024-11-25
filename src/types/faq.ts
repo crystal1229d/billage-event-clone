@@ -1,6 +1,6 @@
 export interface FAQGuide {
   category: string
-  questions: QnA[]
+  questions: QnA[] | []
 }
 export interface QnA {
   question: string
