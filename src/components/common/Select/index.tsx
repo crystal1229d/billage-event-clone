@@ -13,7 +13,6 @@ export interface SelectComponentProps<T> {
   name: string
   placeholder: string
   options: T[]
-  // onOpenChange?: (open: boolean) => void
   isLoading?: boolean
   disabled?: boolean
   className?: string
@@ -42,6 +41,9 @@ export default function Select<T>({
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent>
+        <SelectItem key="0" value="0">
+          {placeholder}
+        </SelectItem>
         {options &&
           options.length > 0 &&
           options.map((option) => {

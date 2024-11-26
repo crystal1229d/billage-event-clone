@@ -15,22 +15,28 @@ import styles from './ControlPanner.module.css'
 interface Props {
   cities: City[]
   categories: ProductCategory[]
+  onFilterChange: (
+    selectedTown: string | null,
+    selectedCategory: string | null,
+  ) => void
 }
 
-export default function ControlPanner({ cities, categories }: Props) {
+export default function ControlPanner({
+  cities,
+  categories,
+  onFilterChange,
+}: Props) {
   const [isSelectVisible, setIsSelectVisible] = useState<boolean>(false)
-
-  const [selectedCity, setSelectedCity] = useState<string | null>(null)
+  const [selectedTown, setSelectedTown] = useState<string | null>(null)
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [townOptions, setTownOptions] = useState<Town[]>([])
-  const [isLoadingTowns, setIsLoadingTowns] = useState<boolean>(false)
+  const [_, setIsLoadingTowns] = useState<boolean>(false)
 
   const handleClickCategoryButton = () => {
     setIsSelectVisible((prev) => !prev)
   }
 
   const handleCityChange = async (cityName: string) => {
-    setSelectedCity(cityName)
-
     if (cityName) {
       try {
         setIsLoadingTowns(true)
@@ -46,6 +52,16 @@ export default function ControlPanner({ cities, categories }: Props) {
     } else {
       setTownOptions([])
     }
+  }
+
+  const handleTownChange = (townIdx: string) => {
+    setSelectedTown(townIdx)
+    onFilterChange(townIdx, selectedCategory)
+  }
+
+  const handleCategoryChange = (categorySeq: string) => {
+    setSelectedCategory(categorySeq)
+    onFilterChange(selectedTown, categorySeq)
   }
 
   return (
@@ -99,7 +115,8 @@ export default function ControlPanner({ cities, categories }: Props) {
           options={townOptions}
           getOptionLabel={(option) => option.townName}
           getOptionValue={(option) => option.townIdx}
-          disabled={!selectedCity}
+          disabled={townOptions.length === 0}
+          onValueChange={handleTownChange}
         />
         <Select
           name="category"
@@ -107,6 +124,7 @@ export default function ControlPanner({ cities, categories }: Props) {
           options={categories}
           getOptionLabel={(option) => option.categoryName}
           getOptionValue={(option) => option.categorySeq}
+          onValueChange={handleCategoryChange}
         />
       </div>
     </div>

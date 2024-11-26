@@ -49,13 +49,13 @@ export interface ProductCategory {
 
 /* 상품 리스트 */
 export interface RentalProductsListRequest {
-  status: number
-  filter: number
-  categories: number
-  keyword: string
-  size: number
-  signIn: number
-  towns: string | null
+  status?: number
+  filter?: number
+  categories?: number
+  keyword?: string
+  size?: number
+  signIn?: number
+  towns?: string | null
 }
 export interface RentalProductsListResponse {
   timestamp: Date

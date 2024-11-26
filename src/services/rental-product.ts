@@ -48,31 +48,39 @@ export const getCategories = async (): Promise<ProductCategoriesResponse> => {
     )
   return data
 }
-
 export const getRentalProducts = async (
   requestParams: RentalProductsListRequest = {
     status: 0,
     filter: 0,
-    categories: 4,
+    categories: 2,
     keyword: '',
     size: 20,
     signIn: 0,
     towns: null,
   },
 ): Promise<RentalProductsListResponse> => {
-  const { status, filter, categories, keyword, size, signIn, towns } =
-    requestParams
+  const defaultParams = {
+    status: 0,
+    filter: 0,
+    keyword: '',
+    size: 20,
+    signIn: 0,
+  }
+
+  const params = {
+    ...defaultParams,
+    ...Object.fromEntries(
+      Object.entries(requestParams).filter(([key, value]) =>
+        key === 'categories' || key === 'towns'
+          ? value !== undefined && value !== null
+          : true,
+      ),
+    ),
+  }
+
   const { data, error } = await httpRequest('/api/noauth/getMainList', {
     method: 'get',
-    params: {
-      status,
-      filter,
-      categories,
-      size,
-      signIn,
-      ...(keyword !== '' && { keyword }),
-      ...(towns != null && { towns }),
-    },
+    params,
   })
 
   if (error)
