@@ -1,14 +1,17 @@
 import Image from 'next/image'
+import { formatNumber } from '@/utils'
 import { getRentalProductDetail } from '@/services/rental-product'
 import { RentalProductDetailResponse } from '@/types/rental-product'
-import ProductImages from '@/components/billageProductDetail/ProductImages'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot, faTag } from '@fortawesome/free-solid-svg-icons'
+
+import ProductImages from '@/components/billageProductDetail/ProductImages'
 import StarGrade from '@/components/billageProductDetail/StarGrade'
-import { formatNumber } from '@/utils'
 import RentalButtons from '@/components/billageProductDetail/RentalButtons'
-import styles from './page.module.css'
 import OtherProductsList from '@/components/billageProductDetail/OtherProductsList'
+
+import styles from './page.module.css'
+import UserInfo from '@/components/billageProductDetail/UserInfo'
 
 interface Props {
   params: {
@@ -42,36 +45,14 @@ export default async function ProductDetailPage({ params }: Props) {
     <div className={styles['product-detail-page']}>
       <div className={styles['product-page']}>
         <ProductImages images={images} />
+
         <div className={styles['product-info-wrapper']}>
           <div className={styles['user-info-wrapper']}>
-            <div className={styles['user-info']}>
-              <div className={styles['score-wrapper']}>
-                <div className={styles['score-point']}></div>
-                <Image
-                  src={
-                    userProfileImage
-                      ? `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}image/${userProfileImage}`
-                      : '/assets/images/logo.png'
-                  }
-                  alt="profile"
-                  width={50}
-                  height={50}
-                  loading="lazy"
-                />
-              </div>
-              <div>
-                <div className={styles['grade-name']}>
-                  <FontAwesomeIcon
-                    icon={faLocationDot}
-                    width="1em"
-                    height="1em"
-                    color="#ff3855"
-                  />
-                  <span>도톨씨앗</span>
-                </div>
-                <div className={styles['nickname']}>{userNickName}</div>
-              </div>
-            </div>
+            <UserInfo
+              nickname={userNickName}
+              profileImg={userProfileImage}
+              score={activityScore}
+            />
             <StarGrade point={userStarPoint} />
           </div>
 

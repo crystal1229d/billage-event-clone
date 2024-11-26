@@ -1,0 +1,41 @@
+.user-info {
+  display: flex;
+  align-items: center;
+}
+.score-wrapper {
+  width: 60px;
+  height: 60px;
+  padding: 5px;
+  border-radius: 60px;
+  position: relative;
+  background: conic-gradient(
+    rgb(255, 255, 255) 0%,
+    rgb(255, 255, 255) 99.9483%,
+    rgb(85, 185, 191) 99.9483%,
+    rgb(252, 209, 56) 100%
+  );
+}
+.score-point {
+  position: absolute;
+  top: 0;
+  width: 70px;
+  height: 70px;
+  left: 0;
+  transform: rotate(359.814deg);
+}
+.grade-name {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  color: #ff3855;
+  font-size: 15px;
+  line-height: 1rem;
+}
+.grade-name h3 {
+  margin: 0;
+  padding: 0;
+}
+.nickname {
+  font-family: 'Pretendard-Bold';
+  font-size: 18px;
+}
