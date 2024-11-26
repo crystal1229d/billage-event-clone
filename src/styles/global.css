@@ -230,6 +230,7 @@ select {
   display: none;
 }
 
+/* Swiper */
 .swiper-pagination-bullet-active {
   background: #ff3855 !important;
 }
