@@ -20,6 +20,7 @@ interface Props {
 export default function ControlPanner({ cities, categories }: Props) {
   const [isSelectVisible, setIsSelectVisible] = useState<boolean>(false)
 
+  const [selectedCity, setSelectedCity] = useState<string | null>(null)
   const [townOptions, setTownOptions] = useState<Town[]>([])
   const [isLoadingTowns, setIsLoadingTowns] = useState<boolean>(false)
 
@@ -27,17 +28,23 @@ export default function ControlPanner({ cities, categories }: Props) {
     setIsSelectVisible((prev) => !prev)
   }
 
-  const handleClickTownSelect = async () => {
-    if (townOptions.length === 0 && !isLoadingTowns) {
+  const handleCityChange = async (cityName: string) => {
+    setSelectedCity(cityName)
+
+    if (cityName) {
       try {
         setIsLoadingTowns(true)
-        const towns: TownsListResponse = await getTowns()
-        setTownOptions(towns.data)
+        const towns: TownsListResponse = await getTowns({
+          sigunguName: cityName,
+        })
+        setTownOptions(towns.data.list)
       } catch (error) {
         console.error('Error fetching towns:', error)
       } finally {
         setIsLoadingTowns(false)
       }
+    } else {
+      setTownOptions([])
     }
   }
 
@@ -84,6 +91,7 @@ export default function ControlPanner({ cities, categories }: Props) {
           options={cities}
           getOptionLabel={(option) => option.sigunguName}
           getOptionValue={(option) => option.sigunguName}
+          onValueChange={handleCityChange}
         />
         <Select
           name="town"
@@ -91,6 +99,7 @@ export default function ControlPanner({ cities, categories }: Props) {
           options={townOptions}
           getOptionLabel={(option) => option.townName}
           getOptionValue={(option) => option.townIdx}
+          disabled={!selectedCity}
         />
         <Select
           name="category"

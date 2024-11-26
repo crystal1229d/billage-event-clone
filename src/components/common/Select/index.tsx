@@ -13,11 +13,13 @@ export interface SelectComponentProps<T> {
   name: string
   placeholder: string
   options: T[]
-  onOpenChange?: (open: boolean) => void
+  // onOpenChange?: (open: boolean) => void
   isLoading?: boolean
+  disabled?: boolean
   className?: string
   getOptionLabel: (option: T) => string | number
   getOptionValue: (option: T) => string | number
+  onValueChange?: (value: string) => void
 }
 
 export default function Select<T>({
@@ -25,12 +27,18 @@ export default function Select<T>({
   placeholder,
   options,
   isLoading = false,
+  disabled = false,
   getOptionLabel,
   getOptionValue,
+  onValueChange,
 }: SelectComponentProps<T>) {
   return (
-    <SelectBox name={name}>
-      <SelectTrigger className={styles['select-wrapper']} isLoading={isLoading}>
+    <SelectBox name={name} onValueChange={onValueChange}>
+      <SelectTrigger
+        className={styles['select-wrapper']}
+        isLoading={isLoading}
+        disabled={disabled}
+      >
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent>

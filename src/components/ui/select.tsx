@@ -17,6 +17,7 @@ const SelectTrigger = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger> & {
     isOpen?: boolean
     isLoading?: boolean
+    onValueChange?: () => void
   }
 >(({ className, children, isOpen, isLoading, ...props }, ref) => (
   <SelectPrimitive.Trigger

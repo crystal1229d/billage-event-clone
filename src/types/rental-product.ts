@@ -20,7 +20,9 @@ export interface TownsListResponse {
   error: string
   message: string
   path: string
-  data: Town[]
+  data: {
+    list: Town[]
+  }
 }
 export interface Town {
   townIdx: number
