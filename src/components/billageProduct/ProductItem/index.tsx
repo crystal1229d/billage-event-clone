@@ -8,6 +8,7 @@ import {
   faHeart,
   faEye,
 } from '@fortawesome/free-solid-svg-icons'
+import { formatNumber } from '@/utils'
 
 interface Props {
   product: RentalProduct
@@ -34,7 +35,7 @@ export default function ProductItem({ product }: Props) {
       />
       <div className={styles['card-content']}>
         <h3>{title}</h3>
-        <div>
+        <div className={styles.fee}>
           <Image
             src="/assets/images/chips_1day.webp"
             alt="일일대여료아이콘"
@@ -42,9 +43,9 @@ export default function ProductItem({ product }: Props) {
             height={17}
             loading="lazy"
           />
-          <span>{dailyRentalFee}원</span>
+          <span>{formatNumber(dailyRentalFee)}원</span>
         </div>
-        <div>
+        <div className={styles.location}>
           <FontAwesomeIcon
             icon={faLocationDot}
             width="1em"
@@ -53,24 +54,24 @@ export default function ProductItem({ product }: Props) {
           />
           <span>{towns[0]}</span>
         </div>
-        <div>
-          <div>
+        <div className={styles['count-wrapper']}>
+          <div className={styles.like}>
             <FontAwesomeIcon
               width="1em"
               height="1em"
               color="#777"
               icon={faHeart}
             />
-            <span>{likeCnt}</span>
+            <span>{formatNumber(likeCnt)}</span>
           </div>
-          <div>
+          <div className={styles.view}>
             <FontAwesomeIcon
               width="1em"
               height="1em"
               color="#777"
               icon={faEye}
             />
-            <span>{viewCnt}</span>
+            <span>{formatNumber(viewCnt)}</span>
           </div>
         </div>
       </div>

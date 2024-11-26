@@ -33,8 +33,6 @@ const httpRequest = async (url: string, options: HttpRequestOptions) => {
       next,
     })
 
-    console.log('response : ', response)
-
     if (!response.ok) {
       console.error(
         `HTTP error! Status: ${response.status}, Status Text: ${response.statusText}`,

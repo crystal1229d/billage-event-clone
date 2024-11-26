@@ -1,17 +1,10 @@
 import ControlPanner from '@/components/billageProduct/ControlPanner/ControlPanner'
-import styles from './page.module.css'
-import {
-  CitiesListResponse,
-  RentalProductsListResponse,
-  Town,
-} from '@/types/rental-product'
-import { getCities, getRentalProducts } from '@/service/rental-product'
+import { RentalProductsListResponse } from '@/types/rental-product'
+import { getRentalProducts } from '@/service/rental-product'
 import ProductItem from '@/components/billageProduct/ProductItem'
+import styles from './page.module.css'
 
 export default async function BillageProductPage() {
-  // const citiesResponse: CitiesListResponse = await getCities()
-  // const cities = citiesResponse.data.list
-
   const productsResponse: RentalProductsListResponse = await getRentalProducts()
   const products = productsResponse.data.rentals
 
