@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { getEventById } from '@/service/event'
+import { getEventById } from '@/services/event'
 import styles from './page.module.css'
 
 interface Props {

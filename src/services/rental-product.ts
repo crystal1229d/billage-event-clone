@@ -11,6 +11,7 @@ import httpRequest from './index'
 export const getCities = async (): Promise<CitiesListResponse> => {
   const { data, error } = await httpRequest('/api/noauth/getTowns1', {
     method: 'get',
+    cache: 'force-cache',
   })
 
   if (error)
@@ -38,6 +39,7 @@ export const getTowns = async (
 export const getCategories = async (): Promise<ProductCategoriesResponse> => {
   const { data, error } = await httpRequest('/api/getCategory', {
     method: 'get',
+    cache: 'force-cache',
   })
 
   if (error)

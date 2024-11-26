@@ -34,7 +34,9 @@ export interface ProductCategoriesResponse {
   error: string
   message: string
   path: string
-  data: ProductCategory[]
+  data: {
+    categoryList: ProductCategory[]
+  }
 }
 export interface ProductCategory {
   categorySeq: number

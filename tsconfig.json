@@ -24,7 +24,7 @@
       "@/common/*": ["./src/components/common/*"],
       "@/layout/*": ["./src/components/layout/*"],
       "@/hooks/*": ["./src/hooks/*"],
-      "@/service/*": ["./src/service/*"],
+      "@/service/*": ["./src/services/*"],
       "@/styles/*": ["./src/styles/*"],
       "@/types/*": ["./src/types/*"],
       "@/utils/*": ["./src/utils/*"]

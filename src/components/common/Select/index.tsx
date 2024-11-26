@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import {
   Select as SelectBox,
   SelectContent,
@@ -10,36 +9,41 @@ import {
 } from '@/components/ui/select'
 import styles from './Select.module.css'
 
-export interface SelectOption {
-  value: string
-  label: string
-}
-
-interface SelectComponentProps {
+export interface SelectComponentProps<T> {
   name: string
   placeholder: string
-  options: SelectOption[]
+  options: T[]
+  onOpenChange?: (open: boolean) => void
+  isLoading?: boolean
   className?: string
+  getOptionLabel: (option: T) => string | number
+  getOptionValue: (option: T) => string | number
 }
 
-export default function Select({
+export default function Select<T>({
   name,
   placeholder,
   options,
-}: SelectComponentProps) {
-  const [isOpen, setIsOpen] = useState<boolean>(false)
-
+  isLoading = false,
+  getOptionLabel,
+  getOptionValue,
+}: SelectComponentProps<T>) {
   return (
-    <SelectBox name={name} onOpenChange={(open) => setIsOpen(open)}>
-      <SelectTrigger className={styles['select-wrapper']} isOpen={isOpen}>
+    <SelectBox name={name}>
+      <SelectTrigger className={styles['select-wrapper']} isLoading={isLoading}>
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent>
-        {options.map((option) => (
-          <SelectItem key={option.value} value={option.value}>
-            {option.label}
-          </SelectItem>
-        ))}
+        {options &&
+          options.length > 0 &&
+          options.map((option) => {
+            const value = getOptionValue(option)
+            return value ? (
+              <SelectItem key={value} value={value + ''}>
+                {getOptionLabel(option)}
+              </SelectItem>
+            ) : null
+          })}
       </SelectContent>
     </SelectBox>
   )

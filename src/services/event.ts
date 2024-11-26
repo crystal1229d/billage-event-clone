@@ -28,6 +28,7 @@ export const getEventById = async (
   const { id } = requestParams
   const { data, error } = await httpRequest(`/eventApi/event/${id}`, {
     method: 'get',
+    cache: 'force-cache',
   })
 
   if (error)

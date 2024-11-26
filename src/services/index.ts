@@ -5,6 +5,7 @@ interface HttpRequestOptions extends RequestInit {
   next?: {
     revalidate: number
   }
+  cache?: 'force-cache' | 'no-store'
 }
 
 const isServer = typeof window === 'undefined'
@@ -31,6 +32,7 @@ const httpRequest = async (url: string, options: HttpRequestOptions) => {
       body: isFormData ? data : JSON.stringify(data),
       cache,
       next,
+      ...rest,
     })
 
     if (!response.ok) {

@@ -1,4 +1,4 @@
-import { getEvents } from '@/service/event'
+import { getEvents } from '@/services/event'
 import { Event, EventsListResponse } from '@/types/event'
 import EventItem from '@/components/event/EventItem'
 import styles from './page.module.css'

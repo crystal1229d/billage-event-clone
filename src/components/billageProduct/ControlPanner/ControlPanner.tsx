@@ -3,31 +3,42 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Select from '@/components/common/Select'
+import { getTowns } from '@/services/rental-product'
+import {
+  City,
+  ProductCategory,
+  Town,
+  TownsListResponse,
+} from '@/types/rental-product'
 import styles from './ControlPanner.module.css'
 
-const areaOptions = [
-  { value: '강원특별자치도 강릉시', label: '강원특별자치도 강릉시' },
-  { value: 'dark', label: 'Dark' },
-  { value: 'system', label: 'System' },
-]
+interface Props {
+  cities: City[]
+  categories: ProductCategory[]
+}
 
-const dongOptions = [
-  { value: 'dong1', label: '동네1' },
-  { value: 'dong2', label: '동네2' },
-  { value: 'dong3', label: '동네3' },
-]
+export default function ControlPanner({ cities, categories }: Props) {
+  const [isSelectVisible, setIsSelectVisible] = useState<boolean>(false)
 
-const categoryOptions = [
-  { value: '강원특별자치도 강릉시', label: '강원특별자치도 강릉시' },
-  { value: 'dark', label: 'Dark' },
-  { value: 'system', label: 'System' },
-]
-
-export default function ControlPanner() {
-  const [isSelectVisible, setIsSelectVisible] = useState(false)
+  const [townOptions, setTownOptions] = useState<Town[]>([])
+  const [isLoadingTowns, setIsLoadingTowns] = useState<boolean>(false)
 
   const handleClickCategoryButton = () => {
     setIsSelectVisible((prev) => !prev)
+  }
+
+  const handleClickTownSelect = async () => {
+    if (townOptions.length === 0 && !isLoadingTowns) {
+      try {
+        setIsLoadingTowns(true)
+        const towns: TownsListResponse = await getTowns()
+        setTownOptions(towns.data)
+      } catch (error) {
+        console.error('Error fetching towns:', error)
+      } finally {
+        setIsLoadingTowns(false)
+      }
+    }
   }
 
   return (
@@ -67,12 +78,26 @@ export default function ControlPanner() {
             : styles['selectlist-wrapper']
         }
       >
-        <Select name="지역" placeholder="지역 선택" options={areaOptions} />
-        <Select name="동네" placeholder="동네 선택" options={dongOptions} />
         <Select
-          name="카테고리"
+          name="city"
+          placeholder="지역 선택"
+          options={cities}
+          getOptionLabel={(option) => option.sigunguName}
+          getOptionValue={(option) => option.sigunguName}
+        />
+        <Select
+          name="town"
+          placeholder="동네 선택"
+          options={townOptions}
+          getOptionLabel={(option) => option.townName}
+          getOptionValue={(option) => option.townIdx}
+        />
+        <Select
+          name="category"
           placeholder="카테고리 선택"
-          options={categoryOptions}
+          options={categories}
+          getOptionLabel={(option) => option.categoryName}
+          getOptionValue={(option) => option.categorySeq}
         />
       </div>
     </div>
