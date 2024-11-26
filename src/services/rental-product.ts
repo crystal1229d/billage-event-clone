@@ -48,6 +48,7 @@ export const getCategories = async (): Promise<ProductCategoriesResponse> => {
     )
   return data
 }
+
 export const getRentalProducts = async (
   requestParams: RentalProductsListRequest = {
     status: 0,
@@ -71,7 +72,7 @@ export const getRentalProducts = async (
     ...defaultParams,
     ...Object.fromEntries(
       Object.entries(requestParams).filter(([key, value]) =>
-        key === 'categories' || key === 'towns'
+        key === 'categories' || key === 'towns' || key === 'keyword'
           ? value !== undefined && value !== null
           : true,
       ),

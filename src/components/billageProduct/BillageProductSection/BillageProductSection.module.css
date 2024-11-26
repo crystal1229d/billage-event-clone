@@ -20,8 +20,12 @@
 
   background: #efefef;
   border-radius: 10px;
-  font-size: 20px;
+  font-size: 21px;
   font-family: 'Pretendard-SemiBold';
+}
+
+.no-items .keyword {
+  color: #ff3855;
 }
 
 @media (min-width: 1280px) {

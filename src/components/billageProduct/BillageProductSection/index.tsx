@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
 import { City, ProductCategory, RentalProduct } from '@/types/rental-product'
 import ControlPanner from '../ControlPanner/ControlPanner'
 import ProductItem from '../ProductItem'
@@ -19,15 +19,19 @@ export default function BillageProductSection({
 }: Props) {
   const [filteredProducts, setFilteredProducts] =
     useState<RentalProduct[]>(products)
+  const [currentKeyword, setCurrentKeyword] = useState<string>('')
 
   const handleFilterChange = async (
     selectedTown: string | null,
     selectedCategory: string | null,
+    keyword: string,
   ) => {
+    setCurrentKeyword(keyword)
     try {
       const response = await getRentalProducts({
         towns: selectedTown ? selectedTown : null,
         categories: selectedCategory ? parseInt(selectedCategory) : undefined,
+        keyword,
       })
       setFilteredProducts(response.data.rentals)
     } catch (error) {
@@ -49,7 +53,16 @@ export default function BillageProductSection({
 
       {!filteredProducts || filteredProducts.length === 0 ? (
         <div className={styles['no-items']}>
-          <span>등록된 대여물품이 없습니다.</span>
+          <span>
+            {currentKeyword ? (
+              <>
+                <span className={styles['keyword']}>{currentKeyword}</span>
+                (으)로 검색된 대여물품이 없어요!
+              </>
+            ) : (
+              '등록된 대여물품이 없습니다.'
+            )}
+          </span>
         </div>
       ) : (
         <ul className={styles['product-list']}>

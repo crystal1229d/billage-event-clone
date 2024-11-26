@@ -18,6 +18,7 @@ interface Props {
   onFilterChange: (
     selectedTown: string | null,
     selectedCategory: string | null,
+    keyword: string,
   ) => void
 }
 
@@ -30,6 +31,7 @@ export default function ControlPanner({
   const [selectedTown, setSelectedTown] = useState<string | null>(null)
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [townOptions, setTownOptions] = useState<Town[]>([])
+  const [keyword, setKeyword] = useState<string>('')
   const [_, setIsLoadingTowns] = useState<boolean>(false)
 
   const handleClickCategoryButton = () => {
@@ -56,12 +58,26 @@ export default function ControlPanner({
 
   const handleTownChange = (townIdx: string) => {
     setSelectedTown(townIdx)
-    onFilterChange(townIdx, selectedCategory)
+    onFilterChange(townIdx, selectedCategory, keyword)
   }
 
   const handleCategoryChange = (categorySeq: string) => {
     setSelectedCategory(categorySeq)
-    onFilterChange(selectedTown, categorySeq)
+    onFilterChange(selectedTown, categorySeq, keyword)
+  }
+
+  const handleKeywordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setKeyword(event.target.value)
+  }
+
+  const handleSearch = () => {
+    onFilterChange(selectedTown, selectedCategory, keyword)
+  }
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      handleSearch()
+    }
   }
 
   return (
@@ -80,8 +96,14 @@ export default function ControlPanner({
           />
         </button>
         <div className={styles['input-wrapper']}>
-          <input type="text" placeholder="검색어를 입력해 주세요." />
-          <button>
+          <input
+            type="text"
+            placeholder="검색어를 입력해 주세요."
+            value={keyword}
+            onChange={handleKeywordChange}
+            onKeyDown={handleKeyDown}
+          />
+          <button onClick={handleSearch}>
             <Image
               src="/assets/images/search.webp"
               alt="검색 버튼"
