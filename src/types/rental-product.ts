@@ -70,7 +70,7 @@ export interface RentalProductsListResponse {
 export interface RentalProduct {
   rentalSeq: number
   title: string
-  content: string
+  content?: string
   regDate: number
   dailyRentalFee: number
   likeCnt: number

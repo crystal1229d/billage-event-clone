@@ -1,6 +1,8 @@
 import {
   CitiesListResponse,
   City,
+  OtherRentalProduct,
+  OtherRentalProductsListResponse,
   ProductCategoriesResponse,
   RentalProduct,
   RentalProductDetailResponse,
@@ -107,5 +109,26 @@ export const getRentalProductDetail = async (
     throw new Error(
       typeof error === 'string' ? error : 'An unexpected error occurred',
     )
+  return data
+}
+
+export const getOtherRentalProducts = async (
+  rentalIdx: OtherRentalProduct['rentalSeq'],
+  page: number = 0,
+  size: number = 5,
+): Promise<OtherRentalProductsListResponse> => {
+  const { data, error } = await httpRequest(
+    `/api/noauth/getEtcRentals?rentalIdx=${rentalIdx}&page=${page}&size=${size}`,
+    {
+      method: 'get',
+    },
+  )
+
+  if (error) {
+    throw new Error(
+      typeof error === 'string' ? error : 'An unexpected error occurred',
+    )
+  }
+
   return data
 }

@@ -8,6 +8,7 @@ import StarGrade from '@/components/billageProductDetail/StarGrade'
 import { formatNumber } from '@/utils'
 import RentalButtons from '@/components/billageProductDetail/RentalButtons'
 import styles from './page.module.css'
+import OtherProductsList from '@/components/billageProductDetail/OtherProductsList'
 
 interface Props {
   params: {
@@ -25,6 +26,7 @@ export default async function ProductDetailPage({ params }: Props) {
     title,
     content,
     images,
+    userIdx,
     userNickName,
     userProfileImage,
     userStarPoint,
@@ -37,91 +39,99 @@ export default async function ProductDetailPage({ params }: Props) {
   const formattedContent = content.replace(/\n/g, '<br />')
 
   return (
-    <div className={styles['product-page']}>
-      <ProductImages images={images} />
-      <div className={styles['product-info-wrapper']}>
-        <div className={styles['user-info-wrapper']}>
-          <div className={styles['user-info']}>
-            <div className={styles['score-wrapper']}>
-              <div className={styles['score-point']}></div>
-              <Image
-                src={
-                  userProfileImage
-                    ? `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}image/${userProfileImage}`
-                    : '/assets/images/logo.png'
-                }
-                alt="profile"
-                width={50}
-                height={50}
-                loading="lazy"
-              />
-            </div>
-            <div>
-              <div className={styles['grade-name']}>
-                <FontAwesomeIcon
-                  icon={faLocationDot}
-                  width="1em"
-                  height="1em"
-                  color="#ff3855"
+    <div className={styles['product-detail-page']}>
+      <div className={styles['product-page']}>
+        <ProductImages images={images} />
+        <div className={styles['product-info-wrapper']}>
+          <div className={styles['user-info-wrapper']}>
+            <div className={styles['user-info']}>
+              <div className={styles['score-wrapper']}>
+                <div className={styles['score-point']}></div>
+                <Image
+                  src={
+                    userProfileImage
+                      ? `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}image/${userProfileImage}`
+                      : '/assets/images/logo.png'
+                  }
+                  alt="profile"
+                  width={50}
+                  height={50}
+                  loading="lazy"
                 />
-                <span>도톨씨앗</span>
               </div>
-              <div className={styles['nickname']}>{userNickName}</div>
+              <div>
+                <div className={styles['grade-name']}>
+                  <FontAwesomeIcon
+                    icon={faLocationDot}
+                    width="1em"
+                    height="1em"
+                    color="#ff3855"
+                  />
+                  <span>도톨씨앗</span>
+                </div>
+                <div className={styles['nickname']}>{userNickName}</div>
+              </div>
             </div>
+            <StarGrade point={userStarPoint} />
           </div>
-          <StarGrade point={userStarPoint} />
-        </div>
 
-        <div className={styles['product-name']}>{title}</div>
+          <div className={styles['product-name']}>{title}</div>
 
-        <div className={styles['fee-wrapper']}>
-          <Image
-            src="/assets/images/chips_1day.webp"
-            alt="일일대여료아이콘"
-            width={45}
-            height={17}
-            loading="lazy"
-          />
-          <span>{formatNumber(dailyFee)}원</span>
-        </div>
+          <div className={styles['fee-wrapper']}>
+            <Image
+              src="/assets/images/chips_1day.webp"
+              alt="일일대여료아이콘"
+              width={45}
+              height={17}
+              loading="lazy"
+            />
+            <span>{formatNumber(dailyFee)}원</span>
+          </div>
 
-        <div className={styles['category-wrapper']}>
-          <FontAwesomeIcon icon={faTag} width="1em" height="1em" color="#777" />
-          {categoryInfo &&
-            categoryInfo.length > 0 &&
-            categoryInfo.map(({ categoryIdx, categoryName }, index) => (
-              <span key={categoryIdx}>
-                {categoryName}
-                {index < categoryInfo.length - 1 && ', '}
-              </span>
-            ))}
-        </div>
-
-        <div>
-          <p dangerouslySetInnerHTML={{ __html: formattedContent }} />
-        </div>
-
-        <div className={styles['location-wrapper']}>
-          <FontAwesomeIcon
-            icon={faLocationDot}
-            width="1em"
-            height="1em"
-            color="#777"
-          />
-          <div className={styles['location-list']}>
-            {towns &&
-              towns.length > 0 &&
-              towns.map(({ townSeq, townName }, index) => (
-                <span key={townSeq}>
-                  {townName}
-                  {index < towns.length - 1 && ', '}
+          <div className={styles['category-wrapper']}>
+            <FontAwesomeIcon
+              icon={faTag}
+              width="1em"
+              height="1em"
+              color="#777"
+            />
+            {categoryInfo &&
+              categoryInfo.length > 0 &&
+              categoryInfo.map(({ categoryIdx, categoryName }, index) => (
+                <span key={categoryIdx}>
+                  {categoryName}
+                  {index < categoryInfo.length - 1 && ', '}
                 </span>
               ))}
           </div>
-        </div>
 
-        <RentalButtons />
+          <div>
+            <p dangerouslySetInnerHTML={{ __html: formattedContent }} />
+          </div>
+
+          <div className={styles['location-wrapper']}>
+            <FontAwesomeIcon
+              icon={faLocationDot}
+              width="1em"
+              height="1em"
+              color="#777"
+            />
+            <div className={styles['location-list']}>
+              {towns &&
+                towns.length > 0 &&
+                towns.map(({ townSeq, townName }, index) => (
+                  <span key={townSeq}>
+                    {townName}
+                    {index < towns.length - 1 && ', '}
+                  </span>
+                ))}
+            </div>
+          </div>
+
+          <RentalButtons />
+        </div>
       </div>
+      <OtherProductsList nickname={userNickName} userIdx={userIdx} />
     </div>
   )
 }

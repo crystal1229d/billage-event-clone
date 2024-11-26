@@ -3,7 +3,7 @@
   margin-bottom: 32px;
   vertical-align: top;
 }
-.card a {
+.card .link {
   line-height: 0;
   min-width: 408px !important;
   width: 100%;

@@ -1,6 +1,6 @@
 import { RentalProduct } from '@/types/rental-product'
 import styles from './ProductItem.module.css'
-import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -24,11 +24,18 @@ export default function ProductItem({ product }: Props) {
     imageUrl,
     towns,
   } = product
+  const router = useRouter()
+
+  const handleProductClick = () => {
+    router.push(`/billageProduct/${rentalSeq}`)
+  }
 
   return (
     <li className={styles.card}>
-      <Link
-        href={`${rentalSeq}`}
+      <div
+        className={styles['link']}
+        onClick={handleProductClick}
+        // href={`${rentalSeq}`}
         style={{
           backgroundImage: `url(${`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}image/${imageUrl}`})`,
         }}
