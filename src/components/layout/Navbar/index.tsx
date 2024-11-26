@@ -8,8 +8,11 @@ import Link from 'next/link'
 
 export default function Navbar() {
   const location = usePathname()
+
   const currentPath = NAVIGATION.find(
-    (nav) => location === nav.link || location === `${nav.link}/`,
+    (nav) =>
+      (nav.link === '/' && location === '/') ||
+      (nav.link !== '/' && location.startsWith(nav.link)),
   )
   const [selectedNav, setSelectedNav] = useState(
     currentPath ? currentPath.label : '/',
@@ -17,7 +20,9 @@ export default function Navbar() {
 
   useEffect(() => {
     const updatedPath = NAVIGATION.find(
-      (nav) => location === nav.link || location === `${nav.link}/`,
+      (nav) =>
+        (nav.link === '/' && location === '/') ||
+        (nav.link !== '/' && location.startsWith(nav.link)),
     )
     setSelectedNav(updatedPath ? updatedPath.label : '/')
   }, [location])
