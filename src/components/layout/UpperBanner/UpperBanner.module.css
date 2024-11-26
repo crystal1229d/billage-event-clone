@@ -85,7 +85,7 @@
     display: none;
   }
   .upper-banner .swiper-custom-pagination {
-    height: 10px;
+    height: 16px;
     width: fit-content;
     display: flex;
     align-items: center;
@@ -93,6 +93,5 @@
     left: 80vw !important;
     bottom: 5;
     z-index: 1;
-    white-space: nowrap;
   }
 }

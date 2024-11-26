@@ -2,6 +2,8 @@ import {
   CitiesListResponse,
   City,
   ProductCategoriesResponse,
+  RentalProduct,
+  RentalProductDetailResponse,
   RentalProductsListRequest,
   RentalProductsListResponse,
   TownsListResponse,
@@ -83,6 +85,23 @@ export const getRentalProducts = async (
     method: 'get',
     params,
   })
+
+  if (error)
+    throw new Error(
+      typeof error === 'string' ? error : 'An unexpected error occurred',
+    )
+  return data
+}
+
+export const getRentalProductDetail = async (
+  rentalIdx: RentalProduct['rentalSeq'],
+): Promise<RentalProductDetailResponse> => {
+  const { data, error } = await httpRequest(
+    `/api/noauth/getRental?rentalIdx=${rentalIdx}`,
+    {
+      method: 'get',
+    },
+  )
 
   if (error)
     throw new Error(

@@ -230,6 +230,14 @@ select {
   display: none;
 }
 
+.swiper-pagination-bullet-active {
+  background: #ff3855 !important;
+}
+.swiper-pagination-bullet {
+  width: 16px !important;
+  height: 16px !important;
+}
+
 @media (max-width: 1280px) {
   .header,
   .navbar {

@@ -1,0 +1,15 @@
+.stars-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.stars-wrapper span {
+  margin-left: 5px;
+}
+
+.star-filled {
+  color: #ff334b;
+}
+.star-empty {
+  color: #eee;
+}

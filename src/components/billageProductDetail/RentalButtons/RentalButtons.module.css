@@ -1,0 +1,32 @@
+.rental-wrapper {
+  width: 100%;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  column-gap: 15px;
+  row-gap: 0;
+}
+.rental-wrapper .btn-calendar {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  color: #1f1f1f;
+  font-size: 18px;
+  font-family: 'Pretendard-Medium';
+  transition: 0.5s ease;
+  width: 408px;
+  height: 57px;
+  border-radius: 10px;
+  margin: 0 !important;
+}
+.rental-wrapper .btn-rent {
+  font-size: 18px;
+  font-family: 'Pretendard-Medium';
+  transition: 0.5s ease;
+  background: #ff3855;
+  color: #fff;
+  width: 408px;
+  height: 57px;
+  border-radius: 10px;
+  margin: 0 !important;
+}

@@ -1,0 +1,123 @@
+.product-page {
+  width: 844px;
+  margin: 80px auto;
+}
+
+.product-info-wrapper {
+  width: 100%;
+  text-align: left;
+  display: grid;
+  align-content: space-evenly;
+  gap: 30px;
+}
+
+.user-info-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Pretendard-Medium';
+}
+.user-info {
+  display: flex;
+  align-items: center;
+}
+.score-wrapper {
+  width: 60px;
+  height: 60px;
+  padding: 5px;
+  border-radius: 60px;
+  position: relative;
+  background: conic-gradient(
+    rgb(255, 255, 255) 0%,
+    rgb(255, 255, 255) 99.9483%,
+    rgb(85, 185, 191) 99.9483%,
+    rgb(252, 209, 56) 100%
+  );
+}
+.score-point {
+  position: absolute;
+  top: 0;
+  width: 70px;
+  height: 70px;
+  left: 0;
+  transform: rotate(359.814deg);
+}
+.grade-name {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  color: #ff3855;
+  font-size: 15px;
+  line-height: 1rem;
+}
+.grade-name h3 {
+  margin: 0;
+  padding: 0;
+}
+.nickname {
+  font-family: 'Pretendard-Bold';
+  font-size: 18px;
+}
+
+.product-name {
+  font-family: 'Pretendard-Bold';
+  font-size: 19px;
+  color: #1f1f1f;
+}
+
+.fee-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-family: 'Pretendard-Medium';
+  font-size: 20px;
+  color: #1f1f1f;
+}
+
+.category-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1px;
+
+  font-size: 15px;
+  color: #777;
+  font-family: 'Pretendard-Medium';
+  line-height: 1rem;
+}
+
+.location-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-size: 15px;
+  color: #777;
+  text-align: left;
+  font-family: 'Pretendard-Medium';
+  line-height: 1rem;
+  word-break: keep-all;
+}
+
+@media (max-width: 1280px) {
+  .product-info-wrapper {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 844px) {
+  .product-page {
+    width: calc(100% - 40px);
+  }
+
+  .rental-wrapper {
+    grid-template-columns: 100%;
+    grid-template-rows: 1fr 1fr;
+    column-gap: 0;
+    row-gap: 15px;
+  }
+}
