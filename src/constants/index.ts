@@ -138,3 +138,5 @@ export const FAQ_GUIDES = [
     questions: [],
   },
 ]
+
+export const MAX_STARS = 5

@@ -52,6 +52,7 @@ export interface RentalProductsListRequest {
   status?: number
   filter?: number
   categories?: number
+  page?: number
   keyword?: string
   size?: number
   signIn?: number

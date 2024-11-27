@@ -30,6 +30,7 @@ export default function BillageProductSection({
     try {
       const response = await getRentalProducts({
         towns: selectedTown ? selectedTown : null,
+        page: 0,
         categories: selectedCategory ? parseInt(selectedCategory) : undefined,
         keyword,
       })

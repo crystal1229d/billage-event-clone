@@ -57,6 +57,7 @@ export const getRentalProducts = async (
   requestParams: RentalProductsListRequest = {
     status: 0,
     filter: 0,
+    page: 0,
     categories: 2,
     keyword: '',
     size: 20,
@@ -67,6 +68,7 @@ export const getRentalProducts = async (
   const defaultParams = {
     status: 0,
     filter: 0,
+    page: 0,
     keyword: '',
     size: 20,
     signIn: 0,
