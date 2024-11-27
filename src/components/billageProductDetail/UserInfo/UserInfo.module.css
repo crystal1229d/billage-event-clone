@@ -6,10 +6,24 @@
   width: 60px;
   height: 60px;
   padding: 5px;
+  margin-right: 15px;
   border-radius: 50%;
   position: relative;
-  background: conic-gradient(#fff 0%, #fff 100%);
 }
+.score-wrapper .score-point {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+.user-info img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
 .nickname {
   font-family: 'Pretendard-Bold';
   font-size: 18px;

@@ -11,20 +11,28 @@ interface Props {
 }
 
 export default function UserInfo({ nickname, profileImg, score }: Props) {
-  // 1. 백분율로 변환 (0 ~ 100)
-  const percentage = Math.min(100, Math.max(0, score))
-
-  // 2. 원형?링? 형태(conic-gradient)
   const scorePointStyle: CSSProperties = {
+    // 반시계방향
+    //   background: `conic-gradient(
+    //   rgb(255, 255, 255) 0%,
+    //   rgb(255, 255, 255) ${100 - score}%,
+    //   rgb(85, 185, 191) ${100 - score}%,
+    //   rgb(252, 209, 56) 100%
+    // )`,
+
+    // 시계방향
     background: `conic-gradient(
-      #55b9bf ${percentage}%,
-      #fff ${percentage}%
-    )`,
+    rgb(252, 209, 56) 0%,
+    rgb(85, 185, 191) ${score}%,
+    rgb(255, 255, 255) ${score}%,
+    rgb(255, 255, 255) 100%
+  )`,
   }
 
   return (
     <div className={styles['user-info']}>
-      <div className={styles['score-wrapper']} style={scorePointStyle}>
+      <div className={styles['score-wrapper']}>
+        <div className={styles['score-point']} style={scorePointStyle} />
         <Image
           src={
             profileImg

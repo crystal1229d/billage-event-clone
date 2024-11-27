@@ -9,6 +9,7 @@
 
 .product-info-wrapper {
   width: 100%;
+  margin-top: 30px;
   text-align: left;
   display: grid;
   align-content: space-evenly;
