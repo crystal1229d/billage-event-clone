@@ -6,22 +6,13 @@
   width: 60px;
   height: 60px;
   padding: 5px;
-  border-radius: 60px;
+  border-radius: 50%;
   position: relative;
-  background: conic-gradient(
-    rgb(255, 255, 255) 0%,
-    rgb(255, 255, 255) 99.9483%,
-    rgb(85, 185, 191) 99.9483%,
-    rgb(252, 209, 56) 100%
-  );
+  background: conic-gradient(#fff 0%, #fff 100%);
 }
-.score-point {
-  position: absolute;
-  top: 0;
-  width: 70px;
-  height: 70px;
-  left: 0;
-  transform: rotate(359.814deg);
+.nickname {
+  font-family: 'Pretendard-Bold';
+  font-size: 18px;
 }
 .grade-name {
   display: flex;
@@ -34,8 +25,4 @@
 .grade-name h3 {
   margin: 0;
   padding: 0;
-}
-.nickname {
-  font-family: 'Pretendard-Bold';
-  font-size: 18px;
 }

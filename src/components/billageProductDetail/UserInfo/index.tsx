@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import styles from './UserInfo.module.css'
+import { CSSProperties } from 'react'
 
 interface Props {
   nickname: string
@@ -10,10 +11,20 @@ interface Props {
 }
 
 export default function UserInfo({ nickname, profileImg, score }: Props) {
+  // 1. 백분율로 변환 (0 ~ 100)
+  const percentage = Math.min(100, Math.max(0, score))
+
+  // 2. 원형?링? 형태(conic-gradient)
+  const scorePointStyle: CSSProperties = {
+    background: `conic-gradient(
+      #55b9bf ${percentage}%,
+      #fff ${percentage}%
+    )`,
+  }
+
   return (
     <div className={styles['user-info']}>
-      <div className={styles['score-wrapper']}>
-        <div className={styles['score-point']}></div>
+      <div className={styles['score-wrapper']} style={scorePointStyle}>
         <Image
           src={
             profileImg
