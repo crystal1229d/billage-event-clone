@@ -37,7 +37,7 @@ export default function UserInfo({ nickname, profileImg, score }: Props) {
           src={
             profileImg
               ? `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}image/${profileImg}`
-              : '/assets/images/logo.png'
+              : '/assets/images/defaultprofile.webp'
           }
           alt="profile"
           width={50}
