@@ -33,6 +33,7 @@ export default async function ProductDetailPage({ params }: Props) {
     userNickName,
     userProfileImage,
     userStarPoint,
+    grade,
     activityScore,
     dailyFee,
     categoryInfo,
@@ -52,6 +53,7 @@ export default async function ProductDetailPage({ params }: Props) {
               nickname={userNickName}
               profileImg={userProfileImage}
               score={activityScore}
+              grade={grade}
             />
             <StarGrade point={userStarPoint} />
           </div>

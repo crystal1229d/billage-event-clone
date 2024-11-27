@@ -12,6 +12,7 @@
   background-size: 100%;
   background-position: 50%;
   border-radius: 20px;
+  cursor: pointer;
 }
 
 .card-content {

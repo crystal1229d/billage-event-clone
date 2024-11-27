@@ -8,9 +8,15 @@ interface Props {
   nickname: string
   profileImg: string
   score: number
+  grade: string
 }
 
-export default function UserInfo({ nickname, profileImg, score }: Props) {
+export default function UserInfo({
+  nickname,
+  profileImg,
+  score,
+  grade,
+}: Props) {
   const scorePointStyle: CSSProperties = {
     // 반시계방향
     //   background: `conic-gradient(
@@ -23,8 +29,8 @@ export default function UserInfo({ nickname, profileImg, score }: Props) {
     // 시계방향
     background: `conic-gradient(
     rgb(252, 209, 56) 0%,
-    rgb(85, 185, 191) ${score}%,
-    rgb(255, 255, 255) ${score}%,
+    rgb(85, 185, 191) ${(score / 6000) * 100}%,
+    rgb(255, 255, 255) ${(score / 6000) * 100}%,
     rgb(255, 255, 255) 100%
   )`,
   }
@@ -53,7 +59,7 @@ export default function UserInfo({ nickname, profileImg, score }: Props) {
             height="1em"
             color="#ff3855"
           />
-          <span>도톨씨앗</span>
+          <span>{grade}</span>
         </div>
         <div className={styles['nickname']}>{nickname}</div>
       </div>
