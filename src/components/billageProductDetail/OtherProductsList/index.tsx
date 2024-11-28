@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef, useCallback } from 'react'
+import { throttle } from 'lodash'
 import { RentalProductDetail, OtherRentalProduct } from '@/types/rental-product'
 import styles from './OtherProductsList.module.css'
 import { getOtherRentalProducts } from '@/services/rental-product'
@@ -13,18 +14,73 @@ interface Props {
 
 export default function OtherProductsList({ nickname, rentalSeq }: Props) {
   const [otherProducts, setOtherProducts] = useState<OtherRentalProduct[]>([])
+  const [page, setPage] = useState<number>(0)
+  const [loading, setLoading] = useState<boolean>(false)
+  const [hasMore, setHasMore] = useState<boolean>(true)
+
+  const loadMoreRef = useRef<HTMLDivElement | null>(null)
+  const observerRef = useRef<IntersectionObserver | null>(null)
+
+  const fetchOtherProducts = async (currentPage: number) => {
+    setLoading(true)
+    try {
+      const response = await getOtherRentalProducts(rentalSeq, currentPage)
+      if (response.data.etcRentals.length === 0) {
+        setHasMore(false)
+      } else {
+        setOtherProducts((prevProducts) => [
+          ...prevProducts,
+          ...response.data.etcRentals,
+        ])
+        setPage(currentPage)
+      }
+    } catch (error) {
+      console.error('Failed to fetch other rental products:', error)
+    }
+    setLoading(false)
+  }
+
+  const loadMore = async () => {
+    if (loading || !hasMore) return
+    const newPage = page + 1
+    await fetchOtherProducts(newPage)
+  }
+
+  const throttledLoadMore = useCallback(throttle(loadMore, 1000), [
+    page,
+    loading,
+    hasMore,
+  ])
+
+  const handleObserver = useCallback(
+    (entries: IntersectionObserverEntry[]) => {
+      const target = entries[0]
+      if (target.isIntersecting) {
+        throttledLoadMore()
+      }
+    },
+    [throttledLoadMore],
+  )
 
   useEffect(() => {
-    const fetchOtherProducts = async () => {
-      try {
-        const response = await getOtherRentalProducts(rentalSeq)
-        setOtherProducts(response.data.etcRentals)
-      } catch (error) {
-        console.error('Failed to fetch other rental products:', error)
-      }
+    observerRef.current = new IntersectionObserver(handleObserver, {
+      rootMargin: '20px',
+    })
+
+    if (loadMoreRef.current) {
+      observerRef.current.observe(loadMoreRef.current)
     }
 
-    fetchOtherProducts()
+    return () => {
+      if (loadMoreRef.current) {
+        observerRef.current?.unobserve(loadMoreRef.current)
+      }
+    }
+  }, [handleObserver])
+
+  // @TODO: 상세페이지에서 최초 데이터 로드해와서 뿌려주고 이 코드 삭제
+  useEffect(() => {
+    fetchOtherProducts(0)
   }, [rentalSeq])
 
   return (
@@ -42,6 +98,13 @@ export default function OtherProductsList({ nickname, rentalSeq }: Props) {
           ))}
         </ul>
       )}
+      {hasMore && (
+        <div
+          ref={loadMoreRef}
+          style={{ height: '20px', backgroundColor: 'transparent' }}
+        />
+      )}
+      {loading && otherProducts.length > 0 && <p>Loading more...</p>}
     </div>
   )
 }

@@ -1,3 +1,5 @@
+'use client'
+
 import { RentalProduct } from '@/types/rental-product'
 import styles from './ProductItem.module.css'
 import { useRouter } from 'next/navigation'
