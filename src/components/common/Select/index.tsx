@@ -8,12 +8,12 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import styles from './Select.module.css'
+import { useState, useEffect } from 'react'
 
 export interface SelectComponentProps<T> {
   name: string
   placeholder: string
   options: T[]
-  isLoading?: boolean
   disabled?: boolean
   className?: string
   getOptionLabel: (option: T) => string | number
@@ -25,18 +25,36 @@ export default function Select<T>({
   name,
   placeholder,
   options,
-  isLoading = false,
   disabled = false,
   getOptionLabel,
   getOptionValue,
   onValueChange,
 }: SelectComponentProps<T>) {
+  const [selectedValue, setSelectedValue] = useState<string>('0')
+  const [isOpen, setIsOpen] = useState(false)
+
+  useEffect(() => {
+    setSelectedValue('0')
+  }, [options])
+
+  const handleValueChange = (value: string) => {
+    setSelectedValue(value)
+    if (onValueChange) {
+      onValueChange(value)
+    }
+  }
+
   return (
-    <SelectBox name={name} onValueChange={onValueChange}>
+    <SelectBox
+      name={name}
+      value={selectedValue}
+      onValueChange={handleValueChange}
+      onOpenChange={setIsOpen}
+    >
       <SelectTrigger
         className={styles['select-wrapper']}
-        isLoading={isLoading}
         disabled={disabled}
+        isOpen={isOpen}
       >
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
@@ -47,9 +65,9 @@ export default function Select<T>({
         {options &&
           options.length > 0 &&
           options.map((option) => {
-            const value = getOptionValue(option)
-            return value ? (
-              <SelectItem key={value} value={value + ''}>
+            const optionValue = getOptionValue(option)
+            return optionValue ? (
+              <SelectItem key={optionValue} value={optionValue + ''}>
                 {getOptionLabel(option)}
               </SelectItem>
             ) : null

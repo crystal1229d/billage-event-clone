@@ -22,16 +22,25 @@ export default function BillageProductSection({
   const [currentKeyword, setCurrentKeyword] = useState<string>('')
 
   const handleFilterChange = async (
-    selectedTown: string | null,
-    selectedCategory: string | null,
+    selectedTown: string,
+    selectedCity: string,
+    selectedCategory: string,
     keyword: string,
   ) => {
     setCurrentKeyword(keyword)
     try {
       const response = await getRentalProducts({
-        towns: selectedTown ? selectedTown : null,
+        towns:
+          selectedCity === '0' && selectedTown === '0'
+            ? null
+            : selectedCity !== '0' && selectedTown === '0'
+              ? '0'
+              : selectedTown,
         page: 0,
-        categories: selectedCategory ? parseInt(selectedCategory) : undefined,
+        categories:
+          selectedCategory && +selectedCategory !== 0
+            ? parseInt(selectedCategory)
+            : null,
         keyword,
       })
       setFilteredProducts(response.data.rentals)

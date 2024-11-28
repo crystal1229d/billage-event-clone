@@ -51,7 +51,7 @@ export interface ProductCategory {
 export interface RentalProductsListRequest {
   status?: number
   filter?: number
-  categories?: number
+  categories?: number | null
   page?: number
   keyword?: string
   size?: number

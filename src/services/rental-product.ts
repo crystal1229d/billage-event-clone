@@ -72,6 +72,7 @@ export const getRentalProducts = async (
     keyword: '',
     size: 20,
     signIn: 0,
+    categories: '',
   }
 
   const params = {

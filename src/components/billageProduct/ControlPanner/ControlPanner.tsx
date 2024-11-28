@@ -16,8 +16,9 @@ interface Props {
   cities: City[]
   categories: ProductCategory[]
   onFilterChange: (
-    selectedTown: string | null,
-    selectedCategory: string | null,
+    selectedTown: string,
+    selectedCity: string,
+    selectedCategory: string,
     keyword: string,
   ) => void
 }
@@ -28,8 +29,9 @@ export default function ControlPanner({
   onFilterChange,
 }: Props) {
   const [isSelectVisible, setIsSelectVisible] = useState<boolean>(false)
-  const [selectedTown, setSelectedTown] = useState<string | null>(null)
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+  const [selectedCity, setSelectedCity] = useState<string>('0')
+  const [selectedTown, setSelectedTown] = useState<string>('0')
+  const [selectedCategory, setSelectedCategory] = useState<string>('0')
   const [townOptions, setTownOptions] = useState<Town[]>([])
   const [keyword, setKeyword] = useState<string>('')
   const [_, setIsLoadingTowns] = useState<boolean>(false)
@@ -39,7 +41,8 @@ export default function ControlPanner({
   }
 
   const handleCityChange = async (cityName: string) => {
-    if (cityName) {
+    setSelectedCity(cityName)
+    if (cityName !== '0') {
       try {
         setIsLoadingTowns(true)
         const towns: TownsListResponse = await getTowns({
@@ -53,17 +56,18 @@ export default function ControlPanner({
       }
     } else {
       setTownOptions([])
+      onFilterChange(selectedTown, cityName, selectedCategory, keyword)
     }
   }
 
   const handleTownChange = (townIdx: string) => {
     setSelectedTown(townIdx)
-    onFilterChange(townIdx, selectedCategory, keyword)
+    onFilterChange(townIdx, selectedCity, selectedCategory, keyword)
   }
 
   const handleCategoryChange = (categorySeq: string) => {
     setSelectedCategory(categorySeq)
-    onFilterChange(selectedTown, categorySeq, keyword)
+    onFilterChange(selectedTown, selectedCity, categorySeq, keyword)
   }
 
   const handleKeywordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -71,7 +75,7 @@ export default function ControlPanner({
   }
 
   const handleSearch = () => {
-    onFilterChange(selectedTown, selectedCategory, keyword)
+    onFilterChange(selectedTown, selectedCity, selectedCategory, keyword)
   }
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
