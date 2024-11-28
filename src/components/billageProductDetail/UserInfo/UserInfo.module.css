@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
 }
+
 .score-wrapper {
   width: 60px;
   height: 60px;
@@ -15,6 +16,29 @@
   height: 60px;
   border-radius: 50%;
 }
+.score-wrapper .score-point .score-indicator {
+  position: absolute;
+  top: 0;
+  width: 70px;
+  height: 70px;
+  left: 0;
+}
+.score-wrapper .score-point .score-indicator::after {
+  content: '';
+  display: block;
+  width: 15px;
+  height: 15px;
+  margin-left: -7.5px;
+
+  position: absolute;
+  top: -6.5px;
+  left: 50%;
+
+  border-radius: 50%;
+  background: #fcd138;
+  border: 2px solid #fff;
+}
+
 .user-info img {
   width: 50px;
   height: 50px;

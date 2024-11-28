@@ -35,6 +35,7 @@ export default async function ProductDetailPage({ params }: Props) {
     userStarPoint,
     grade,
     activityScore,
+    maxScore,
     dailyFee,
     categoryInfo,
     towns,
@@ -53,6 +54,7 @@ export default async function ProductDetailPage({ params }: Props) {
               nickname={userNickName}
               profileImg={userProfileImage}
               score={activityScore}
+              maxScore={maxScore}
               grade={grade}
             />
             <StarGrade point={userStarPoint} />
