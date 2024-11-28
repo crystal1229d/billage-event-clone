@@ -58,7 +58,7 @@ export const getRentalProducts = async (
     status: 0,
     filter: 0,
     page: 0,
-    categories: 2,
+    categories: null,
     keyword: '',
     size: 20,
     signIn: 0,

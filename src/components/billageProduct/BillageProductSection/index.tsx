@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
+import { throttle, debounce } from 'lodash'
 import { City, ProductCategory, RentalProduct } from '@/types/rental-product'
 import ControlPanner from '../ControlPanner/ControlPanner'
 import ProductItem from '../ProductItem'
@@ -12,6 +13,7 @@ interface Props {
   cities: City[]
   categories: ProductCategory[]
 }
+
 export default function BillageProductSection({
   products,
   cities,
@@ -20,14 +22,60 @@ export default function BillageProductSection({
   const [filteredProducts, setFilteredProducts] =
     useState<RentalProduct[]>(products)
   const [currentKeyword, setCurrentKeyword] = useState<string>('')
+  const [selectedTown, setSelectedTown] = useState<string>('0')
+  const [selectedCity, setSelectedCity] = useState<string>('0')
+  const [selectedCategory, setSelectedCategory] = useState<string>('0')
 
-  const handleFilterChange = async (
-    selectedTown: string,
-    selectedCity: string,
-    selectedCategory: string,
-    keyword: string,
-  ) => {
-    setCurrentKeyword(keyword)
+  const [page, setPage] = useState<number>(0)
+  const [loading, setLoading] = useState<boolean>(false)
+  const [hasMore, setHasMore] = useState<boolean>(true)
+
+  const observerRef = useRef<IntersectionObserver | null>(null)
+  const loadMoreRef = useRef<HTMLDivElement | null>(null)
+
+  const handleFilterChange = useCallback(
+    debounce(
+      async (town: string, city: string, category: string, keyword: string) => {
+        setSelectedTown(town)
+        setSelectedCity(city)
+        setSelectedCategory(category)
+        setCurrentKeyword(keyword)
+
+        setPage(0)
+        setFilteredProducts([])
+        setLoading(true)
+        setHasMore(true)
+
+        try {
+          const response = await getRentalProducts({
+            towns:
+              city === '0' && town === '0'
+                ? null
+                : city !== '0' && town === '0'
+                  ? '0'
+                  : town,
+            page: 0,
+            categories: category && +category !== 0 ? parseInt(category) : null,
+            keyword,
+          })
+          setFilteredProducts(response.data.rentals)
+          setHasMore(response.data.rentals.length > 0)
+        } catch (error) {
+          console.error('Error fetching filtered products:', error)
+        }
+
+        setLoading(false)
+      },
+      400,
+    ),
+    [],
+  )
+
+  const loadMore = async () => {
+    if (loading || !hasMore) return
+    setLoading(true)
+    const newPage = page + 1
+
     try {
       const response = await getRentalProducts({
         towns:
@@ -36,22 +84,60 @@ export default function BillageProductSection({
             : selectedCity !== '0' && selectedTown === '0'
               ? '0'
               : selectedTown,
-        page: 0,
+        page: newPage,
         categories:
           selectedCategory && +selectedCategory !== 0
             ? parseInt(selectedCategory)
             : null,
-        keyword,
+        keyword: currentKeyword,
       })
-      setFilteredProducts(response.data.rentals)
+
+      if (response.data.rentals.length === 0) {
+        setHasMore(false)
+      } else {
+        setFilteredProducts((prevProducts) => [
+          ...prevProducts,
+          ...response.data.rentals,
+        ])
+        setPage(newPage)
+      }
     } catch (error) {
-      console.error('Error fetching filtered products:', error)
+      console.error('Failed to load more products:', error)
     }
+    setLoading(false)
   }
 
+  const throttledLoadMore = useCallback(throttle(loadMore, 1000), [
+    page,
+    loading,
+    hasMore,
+  ])
+
+  const handleObserver = useCallback(
+    (entries: IntersectionObserverEntry[]) => {
+      const target = entries[0]
+      if (target.isIntersecting) {
+        throttledLoadMore()
+      }
+    },
+    [throttledLoadMore],
+  )
+
   useEffect(() => {
-    setFilteredProducts(products)
-  }, [products])
+    observerRef.current = new IntersectionObserver(handleObserver, {
+      rootMargin: '20px',
+    })
+
+    if (loadMoreRef.current) {
+      observerRef.current.observe(loadMoreRef.current)
+    }
+
+    return () => {
+      if (loadMoreRef.current) {
+        observerRef.current?.unobserve(loadMoreRef.current)
+      }
+    }
+  }, [handleObserver])
 
   return (
     <section className={styles['product-page']}>
@@ -61,7 +147,11 @@ export default function BillageProductSection({
         onFilterChange={handleFilterChange}
       />
 
-      {!filteredProducts || filteredProducts.length === 0 ? (
+      {loading && filteredProducts.length === 0 ? (
+        <div className={styles['loading']}>
+          <p>Loading...</p>
+        </div>
+      ) : !filteredProducts || filteredProducts.length === 0 ? (
         <div className={styles['no-items']}>
           <span>
             {currentKeyword ? (
@@ -81,6 +171,13 @@ export default function BillageProductSection({
           ))}
         </ul>
       )}
+      {hasMore && (
+        <div
+          ref={loadMoreRef}
+          style={{ height: '20px', backgroundColor: 'transparent' }}
+        />
+      )}
+      {loading && filteredProducts.length > 0 && <p>Loading more...</p>}
     </section>
   )
 }
