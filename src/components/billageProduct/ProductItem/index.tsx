@@ -15,6 +15,7 @@ interface Props {
 }
 
 export default function ProductItem({ product }: Props) {
+  const router = useRouter()
   const {
     rentalSeq,
     title,
@@ -24,7 +25,6 @@ export default function ProductItem({ product }: Props) {
     imageUrl,
     towns,
   } = product
-  const router = useRouter()
 
   const handleProductClick = () => {
     router.push(`/billageProduct/${rentalSeq}`)
@@ -35,7 +35,6 @@ export default function ProductItem({ product }: Props) {
       <div
         className={styles['link']}
         onClick={handleProductClick}
-        // href={`${rentalSeq}`}
         style={{
           backgroundImage: `url(${`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}image/${imageUrl}`})`,
         }}
@@ -52,14 +51,18 @@ export default function ProductItem({ product }: Props) {
           />
           <span>{formatNumber(dailyRentalFee)}원</span>
         </div>
-        <div className={styles.location}>
+        <div className={styles['location-wrapper']}>
           <FontAwesomeIcon
             icon={faLocationDot}
             width="1em"
             height="1em"
             color="#777"
           />
-          <span>{towns[0]}</span>
+          <div className={styles['location-list']}>
+            {towns && towns.length > 0 && (
+              <span title={JSON.stringify(towns)}>{towns.join(', ')}</span>
+            )}
+          </div>
         </div>
         <div className={styles['count-wrapper']}>
           <div className={styles.like}>
