@@ -26,10 +26,10 @@ export default async function ProductDetailPage({ params }: Props) {
   const product = productsResponse.data
 
   const {
+    rentalSeq,
     title,
     content,
     images,
-    userIdx,
     userNickName,
     userProfileImage,
     userStarPoint,
@@ -116,7 +116,7 @@ export default async function ProductDetailPage({ params }: Props) {
           <RentalButtons />
         </div>
       </div>
-      <OtherProductsList nickname={userNickName} userIdx={userIdx} />
+      <OtherProductsList nickname={userNickName} rentalSeq={rentalSeq} />
     </div>
   )
 }

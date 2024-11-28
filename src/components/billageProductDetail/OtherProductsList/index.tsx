@@ -8,16 +8,16 @@ import ProductItem from '@/components/billageProduct/ProductItem'
 
 interface Props {
   nickname: RentalProductDetail['userNickName']
-  userIdx: RentalProductDetail['userIdx']
+  rentalSeq: RentalProductDetail['rentalSeq']
 }
 
-export default function OtherProductsList({ nickname, userIdx }: Props) {
+export default function OtherProductsList({ nickname, rentalSeq }: Props) {
   const [otherProducts, setOtherProducts] = useState<OtherRentalProduct[]>([])
 
   useEffect(() => {
     const fetchOtherProducts = async () => {
       try {
-        const response = await getOtherRentalProducts(userIdx)
+        const response = await getOtherRentalProducts(rentalSeq)
         setOtherProducts(response.data.etcRentals)
       } catch (error) {
         console.error('Failed to fetch other rental products:', error)
@@ -25,7 +25,7 @@ export default function OtherProductsList({ nickname, userIdx }: Props) {
     }
 
     fetchOtherProducts()
-  }, [userIdx])
+  }, [rentalSeq])
 
   return (
     <div className={styles['other-wrapper']}>

@@ -10,7 +10,7 @@
 .products-list {
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 50% 50%;
   column-gap: 20px;
   margin-top: 32px;
 }
@@ -38,7 +38,7 @@
 
 @media (max-width: 844px) {
   .products-list {
-    grid-template-columns: 1fr;
+    grid-template-columns: 100%;
     padding-left: 0;
   }
 }
