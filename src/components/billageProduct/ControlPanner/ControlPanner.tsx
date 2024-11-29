@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
-import Select from '@/components/common/Select'
+import NextImage from '@/common/NextImage'
+import Select from '@/common/Select'
 import { getTowns } from '@/services/rental-product'
 import {
   City,
@@ -91,12 +91,11 @@ export default function ControlPanner({
           className={styles['btn-category']}
           onClick={handleClickCategoryButton}
         >
-          <Image
+          <NextImage
             src="/assets/images/category.webp"
             alt="카테고리 버튼"
             width={72}
             height={72}
-            loading="lazy"
           />
         </button>
         <div className={styles['input-wrapper']}>
@@ -108,12 +107,11 @@ export default function ControlPanner({
             onKeyDown={handleKeyDown}
           />
           <button onClick={handleSearch}>
-            <Image
+            <NextImage
               src="/assets/images/search.webp"
               alt="검색 버튼"
               width={72}
               height={72}
-              loading="lazy"
             />
           </button>
         </div>

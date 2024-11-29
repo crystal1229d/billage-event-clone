@@ -1,5 +1,5 @@
-import { FAQGuide, QnA } from '@/types'
-import Image from 'next/image'
+import { FAQGuide } from '@/types'
+import NextImage from '@/common/NextImage'
 import {
   Accordion,
   AccordionContent,
@@ -26,12 +26,11 @@ export default function QuestionList({ questions }: Props) {
             className={styles['qna-wrapper']}
           >
             <AccordionTrigger className={styles['question']}>
-              <Image
+              <NextImage
                 src="/assets/images/question.webp"
                 alt="질문"
                 width={41}
                 height={48}
-                loading="lazy"
               />
               <span>{question.question}</span>
             </AccordionTrigger>

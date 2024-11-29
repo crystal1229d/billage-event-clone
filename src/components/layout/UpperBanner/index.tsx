@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
+import NextImage from '@/common/NextImage'
 import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination } from 'swiper/modules'
 import 'swiper/css'
@@ -36,12 +36,11 @@ export default function UpperBanner() {
             <SwiperSlide key={index}>
               <div className={styles.banner}>
                 <div>
-                  <Image
+                  <NextImage
                     src={banner.imageSrc}
                     alt={banner.alt}
                     width={570}
                     height={456}
-                    loading="lazy"
                   />
                 </div>
                 <div className="not-mobile">
@@ -64,21 +63,19 @@ export default function UpperBanner() {
           <div className={`${styles['swiper-buttons']}`}>
             <div className={`${styles.direction}`}>
               <button onClick={() => swiper?.slidePrev()}>
-                <Image
+                <NextImage
                   src="/assets/images/icon-left.png"
                   alt="left arrow"
                   width={40}
                   height={40}
-                  loading="lazy"
                 />
               </button>
               <button onClick={() => swiper?.slideNext()}>
-                <Image
+                <NextImage
                   src="/assets/images/icon-right.png"
                   alt="right arrow"
                   width={40}
                   height={40}
-                  loading="lazy"
                 />
               </button>
             </div>

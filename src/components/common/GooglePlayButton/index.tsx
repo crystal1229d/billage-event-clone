@@ -1,7 +1,7 @@
 'use client'
 
 import { GooglePlayStoreUrl } from '@/constants'
-import Image from 'next/image'
+import NextImage from '@/common/NextImage'
 
 export default function GooglePlayButton() {
   const handleClick = () => {
@@ -10,7 +10,7 @@ export default function GooglePlayButton() {
 
   return (
     <button onClick={handleClick}>
-      <Image
+      <NextImage
         src={`/assets/images/googlePlayBtn.png`}
         width={162}
         height={50}

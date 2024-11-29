@@ -1,5 +1,6 @@
+import { cn } from '@/lib/utils'
 import { AboutGuide } from '@/types'
-import Image from 'next/image'
+import NextImage from '@/common/NextImage'
 import styles from './AboutItem.module.css'
 
 interface Props {
@@ -8,30 +9,32 @@ interface Props {
 }
 
 export default function AboutItem({ about, index }: Props) {
-  const isEven = index % 2 === 0 // 짝수
+  const isEven = index % 2 === 0
 
   return (
     <div
-      className={`${styles['about-item-wrapper']} ${isEven ? styles['even'] : styles['odd']}`}
+      className={cn(styles['about-item-wrapper'], {
+        [styles['even']]: isEven,
+        [styles['odd']]: !isEven,
+      })}
     >
-      <div key="content" className={styles['content-area']}>
-        <Image
+      <div className={styles['content-area']}>
+        <NextImage
           src={about.icon}
           alt={about.iconAlt}
           width={56}
           height={48}
-          loading="lazy"
         />
         <h1 dangerouslySetInnerHTML={{ __html: about.title }} />
         <h2 dangerouslySetInnerHTML={{ __html: about.description }} />
       </div>
-      <div key="image" className={styles['image-area']}>
-        <Image
+
+      <div className={styles['image-area']}>
+        <NextImage
           src={about.image}
           alt={about.imageAlt}
           width={408}
           height={408}
-          loading="lazy"
         />
       </div>
     </div>

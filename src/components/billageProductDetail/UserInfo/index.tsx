@@ -1,9 +1,10 @@
-import Image from 'next/image'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
-import styles from './UserInfo.module.css'
 import { CSSProperties } from 'react'
 import { RentalProductDetail } from '@/types/rental-product'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
+import NextImage from '@/components/common/NextImage'
+import styles from './UserInfo.module.css'
 
 interface Props {
   nickname: RentalProductDetail['userNickName']
@@ -51,7 +52,7 @@ export default function UserInfo({
           />
         </div>
 
-        <Image
+        <NextImage
           src={
             profileImg
               ? `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}image/${profileImg}`
@@ -60,7 +61,6 @@ export default function UserInfo({
           alt="profile"
           width={50}
           height={50}
-          loading="lazy"
         />
       </div>
       <div>

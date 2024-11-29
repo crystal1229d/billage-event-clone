@@ -1,9 +1,9 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
-import Image from 'next/image'
-import GooglePlayButton from '@/components/common/GooglePlayButton'
-import AppStoreButton from '@/components/common/AppStoreButton'
+import NextImage from '@/common/NextImage'
+import GooglePlayButton from '@/common/GooglePlayButton'
+import AppStoreButton from '@/common/AppStoreButton'
 import styles from './AboutBanner.module.css'
 
 export default function AboutBanner() {
@@ -26,7 +26,7 @@ export default function AboutBanner() {
           </div>
         </div>
         <div className={styles['img-box']}>
-          <Image
+          <NextImage
             src="/assets/images/img_content_visual.webp"
             alt="빌리쥐 소개"
             width={408}

@@ -1,8 +1,8 @@
 'use client'
 
-import Image from 'next/image'
-import styles from './Logo.module.css'
 import Link from 'next/link'
+import NextImage from '@/common/NextImage'
+import styles from './Logo.module.css'
 
 interface Props {
   with_name?: boolean
@@ -17,7 +17,7 @@ export default function Logo({
 }: Props) {
   const logoContent = (
     <div className={with_name ? styles.logo_with_name : styles.logo}>
-      <Image
+      <NextImage
         src={
           with_name
             ? '/assets/images/logo_with_name.webp'
@@ -26,7 +26,6 @@ export default function Logo({
         alt="bbillage logo"
         width={131}
         height={35}
-        loading="lazy"
       />
     </div>
   )

@@ -1,16 +1,16 @@
 'use client'
 
-import { RentalProduct } from '@/types/rental-product'
-import styles from './ProductItem.module.css'
+import { formatNumber } from '@/utils'
 import { useRouter } from 'next/navigation'
-import Image from 'next/image'
+import { RentalProduct } from '@/types/rental-product'
+import NextImage from '@/common/NextImage'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faLocationDot,
   faHeart,
   faEye,
 } from '@fortawesome/free-solid-svg-icons'
-import { formatNumber } from '@/utils'
+import styles from './ProductItem.module.css'
 
 interface Props {
   product: RentalProduct
@@ -44,12 +44,11 @@ export default function ProductItem({ product }: Props) {
       <div className={styles['card-content']}>
         <h3>{title}</h3>
         <div className={styles.fee}>
-          <Image
+          <NextImage
             src="/assets/images/chips_1day.webp"
             alt="일일대여료아이콘"
             width={45}
             height={17}
-            loading="lazy"
           />
           <span>{formatNumber(dailyRentalFee)}원</span>
         </div>

@@ -1,5 +1,5 @@
-import Image from 'next/image'
 import { getEventById } from '@/services/event'
+import NextImage from '@/common/NextImage'
 import styles from './page.module.css'
 
 interface Props {
@@ -15,7 +15,7 @@ export default async function EventDetailPage({ params }: Props) {
 
   return (
     <div className={styles['product-wrap']}>
-      <Image
+      <NextImage
         src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${event.pc_img}`}
         alt={event.title}
         width={844}

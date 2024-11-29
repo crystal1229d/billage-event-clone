@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { formatNumber } from '@/utils'
 import {
   getOtherRentalProducts,
@@ -11,6 +10,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot, faTag } from '@fortawesome/free-solid-svg-icons'
 
+import NextImage from '@/common/NextImage'
 import ProductImages from '@/components/billageProductDetail/ProductImages'
 import UserInfo from '@/components/billageProductDetail/UserInfo'
 import StarGrade from '@/components/billageProductDetail/StarGrade'
@@ -73,12 +73,11 @@ export default async function ProductDetailPage({ params }: Props) {
           <div className={styles['product-name']}>{title}</div>
 
           <div className={styles['fee-wrapper']}>
-            <Image
+            <NextImage
               src="/assets/images/chips_1day.webp"
               alt="일일대여료아이콘"
               width={45}
               height={17}
-              loading="lazy"
             />
             <span>{formatNumber(dailyFee)}원</span>
           </div>
