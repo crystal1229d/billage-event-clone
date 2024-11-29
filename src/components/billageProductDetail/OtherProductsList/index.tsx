@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 
 import { useEffect, useState, useRef, useCallback } from 'react'
@@ -12,6 +13,7 @@ interface Props {
   rentalSeq: RentalProductDetail['rentalSeq']
 }
 
+// @TODO: 상세페이지에서 최초 상품데이터 로드해와서 뿌려주기
 export default function OtherProductsList({ nickname, rentalSeq }: Props) {
   const [otherProducts, setOtherProducts] = useState<OtherRentalProduct[]>([])
   const [page, setPage] = useState<number>(0)
@@ -55,11 +57,11 @@ export default function OtherProductsList({ nickname, rentalSeq }: Props) {
   const handleObserver = useCallback(
     (entries: IntersectionObserverEntry[]) => {
       const target = entries[0]
-      if (target.isIntersecting) {
+      if (target.isIntersecting && !loading && hasMore) {
         throttledLoadMore()
       }
     },
-    [throttledLoadMore],
+    [hasMore, loading, throttledLoadMore],
   )
 
   useEffect(() => {
@@ -77,11 +79,6 @@ export default function OtherProductsList({ nickname, rentalSeq }: Props) {
       }
     }
   }, [handleObserver])
-
-  // @TODO: 상세페이지에서 최초 데이터 로드해와서 뿌려주고 이 코드 삭제
-  useEffect(() => {
-    fetchOtherProducts(0)
-  }, [rentalSeq])
 
   return (
     <div className={styles['other-wrapper']}>

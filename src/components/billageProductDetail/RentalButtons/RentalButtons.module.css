@@ -2,10 +2,11 @@
   width: 100%;
   display: grid;
   align-items: center;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 57px;
   column-gap: 15px;
   row-gap: 0;
+  box-sizing: border-box;
 }
 .rental-wrapper .btn-calendar {
   width: 100%;
@@ -33,43 +34,12 @@
   border-radius: 10px;
 }
 
-.calendar-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5px 10px;
-  font-family: 'Pretendard-Regular';
-  font-size: 20px;
-}
-.calendar-title {
-  font-size: 1rem;
-  font-weight: bold;
-}
-.close-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0.25rem;
-}
-
-.btn-rent-small {
-  font-size: 17px;
-  font-family: 'Pretendard-Medium';
-  transition: 0.5s ease;
-  background: #ff3855;
-  color: #fff;
-  width: 100%;
-  height: 50px;
-  border-radius: 10px;
-  margin: 0 !important;
-}
-
 @media (max-width: 844px) {
   .rental-wrapper {
     align-items: center;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 100%;
+    grid-template-rows: 50% 50%;
     column-gap: 0;
-    row-gap: 15px;
+    row-gap: 10px;
   }
 }

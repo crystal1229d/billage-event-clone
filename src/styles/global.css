@@ -239,6 +239,135 @@ select {
   height: 16px !important;
 }
 
+/* Calendar */
+/* 상단 연/월 + 화살표버튼 */
+.react-calendar__navigation {
+  display: flex;
+  margin: 10px 0 30px 0;
+}
+.react-calendar__navigation__prev-button,
+.react-calendar__navigation__next-button {
+  width: 70px;
+  font-size: 25px;
+}
+.react-calendar__navigation__prev2-button,
+.react-calendar__navigation__next2-button {
+  display: none;
+}
+
+/* 요일 */
+.react-calendar__month-view__weekdays__weekday {
+  text-align: center;
+  font-family: 'Prentendard-Bold';
+  font-weight: 700;
+  font-size: 17px;
+  margin-bottom: 5px;
+}
+/* 월 화 수 목 금 토 일 밑줄 없애기 */
+.react-calendar__month-view__weekdays__weekday abbr {
+  text-decoration: none;
+}
+
+/* 월 */
+.react-calendar__year-view__months {
+  display: flex;
+}
+.react-calendar__year-view__months__month {
+  width: 36px;
+  height: 60px !important;
+  padding: 0px 12px;
+  border: none;
+  background: none;
+}
+
+/* 일 */
+.react-calendar__month-view__days__day {
+  width: 36px;
+  height: 36px;
+  padding: 0px 12px;
+  border: none;
+  background: none;
+  font-family: 'Pretendard-Regular';
+  font-size: 17px;
+  font-weight: 300;
+}
+/* 주말은 빨간색으로 */
+.react-calendar__month-view__days__day--weekend {
+  color: #d10000;
+}
+/* 오늘은 노란색으로 */
+.react-calendar__tile--now {
+  background-color: #ffff76;
+  border-radius: 10px;
+  opacity: 0.8;
+}
+/* 오늘 이전 날짜는 흐릿하게 */
+.react-calendar__tile:disabled {
+  opacity: 0.3;
+  background-color: #fff !important;
+}
+/* 이웃한 달의 일자는 흐릿하게 */
+.react-calendar__month-view__days__day--neighboringMonth {
+  opacity: 0.3;
+  background-color: #fff !important;
+}
+
+/* 타일 선택 됐을 떼 (기간 모두 포함) */
+.react-calendar__year-view__months .react-calendar__tile--range {
+  height: 30px !important;
+  margin: 15px 0px;
+  background: #ff3855;
+}
+.react-calendar__tile--active {
+  background: #ff3855 !important;
+  color: #fff;
+  opacity: 0.7;
+}
+
+/* 기간 첫, 끝 날짜 배경 색 입히기 */
+.react-calendar__tile--rangeStart {
+  position: relative;
+  border-radius: 20px 0 0 20px;
+}
+.react-calendar__tile--rangeEnd {
+  position: relative;
+  border-radius: 0 20px 20px 0;
+}
+.react-calendar__tile--rangeBothEnds {
+  position: relative;
+  border-radius: 20px;
+}
+/* 기간 첫, 끝 날짜 배경 원 그리기 */
+/* .react-calendar__month-view__days .react-calendar__tile--rangeStart abbr {
+  content: '';
+  position: absolute;
+  display: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  background: #3688ff;
+  color: white;
+  border-radius: 50%;
+  align-content: center;
+}
+.react-calendar__month-view__days .react-calendar__tile--rangeEnd abbr {
+  content: '';
+  position: absolute;
+  display: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  background: #3688ff;
+  color: white;
+  border-radius: 50%;
+  align-content: center;
+} */
+/* Calendar */
+
 @media (max-width: 1280px) {
   .header,
   .navbar {

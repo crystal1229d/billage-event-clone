@@ -1,17 +1,9 @@
 'use client'
 
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover'
-import { Calendar } from '@/components/ui/calendar'
 import { GooglePlayStoreUrl } from '@/constants'
-import { useState } from 'react'
-import { ko } from 'date-fns/locale'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import { Fragment, useState } from 'react'
 import styles from './RentalButtons.module.css'
+import RentalCalendar from '../RentalCalendar'
 
 export default function RentalButtons() {
   const today = new Date()
@@ -19,51 +11,32 @@ export default function RentalButtons() {
     from: Date | undefined
     to: Date | undefined
   }>({ from: today, to: today })
-  const [isPopoverOpen, setIsPopoverOpen] = useState<boolean>(false)
+  const [isCalendarVisible, setIsCalendarVisible] = useState<boolean>(false)
+  const handleDateChange = (range: { from: Date; to: Date }) => {
+    setSelectedRange(range)
+  }
 
   return (
     <div className={styles['rental-wrapper']}>
-      <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
-        <PopoverTrigger asChild>
-          <button className={styles['btn-calendar']}>대여 캘린더</button>
-        </PopoverTrigger>
-        <PopoverContent className={styles['calendar-content']} align="start">
-          <div className={styles['calendar-header']}>
-            <span className={styles['calendar-title']}>대여 캘린더</span>
-            <button
-              className={styles['close-button']}
-              aria-label="Close"
-              onClick={() => setIsPopoverOpen(false)}
-            >
-              <FontAwesomeIcon icon={faXmark} />
-            </button>
-          </div>
-          <Calendar
-            mode="range"
-            selected={selectedRange}
-            onSelect={(range) => setSelectedRange(range)}
-            disabled={(date) => date <= new Date()}
-            locale={ko}
-            initialFocus
-            className={styles['calendar']}
-          />
-          <div className={styles['calendar-footer']}>
-            <button
-              className={styles['btn-rent-small']}
-              onClick={() => window.open(GooglePlayStoreUrl, '_blank')}
-            >
-              선택한 기간으로 대여하기
-            </button>
-          </div>
-        </PopoverContent>
-      </Popover>
-
+      <button
+        className={styles['btn-calendar']}
+        onClick={() => setIsCalendarVisible(true)}
+      >
+        대여 캘린더
+      </button>
       <button
         className={styles['btn-rent']}
         onClick={() => window.open(GooglePlayStoreUrl, '_blank')}
       >
         대여하기
       </button>
+
+      {isCalendarVisible && (
+        <RentalCalendar
+          onDateChange={handleDateChange}
+          onClose={() => setIsCalendarVisible(false)}
+        />
+      )}
     </div>
   )
 }
