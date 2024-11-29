@@ -1,17 +1,23 @@
 import Image from 'next/image'
 import { formatNumber } from '@/utils'
-import { getRentalProductDetail } from '@/services/rental-product'
-import { RentalProductDetailResponse } from '@/types/rental-product'
+import {
+  getOtherRentalProducts,
+  getRentalProductDetail,
+} from '@/services/rental-product'
+import {
+  OtherRentalProductsListResponse,
+  RentalProductDetailResponse,
+} from '@/types/rental-product'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot, faTag } from '@fortawesome/free-solid-svg-icons'
 
 import ProductImages from '@/components/billageProductDetail/ProductImages'
+import UserInfo from '@/components/billageProductDetail/UserInfo'
 import StarGrade from '@/components/billageProductDetail/StarGrade'
 import RentalButtons from '@/components/billageProductDetail/RentalButtons'
 import OtherProductsList from '@/components/billageProductDetail/OtherProductsList'
 
 import styles from './page.module.css'
-import UserInfo from '@/components/billageProductDetail/UserInfo'
 
 interface Props {
   params: {
@@ -40,6 +46,10 @@ export default async function ProductDetailPage({ params }: Props) {
     categoryInfo,
     towns,
   } = product
+
+  const otherProductsResponse: OtherRentalProductsListResponse =
+    await getOtherRentalProducts(+rentalSeq)
+  const otherProducts = otherProductsResponse.data.etcRentals
 
   const formattedContent = content.replace(/\n/g, '<br />')
 
@@ -116,7 +126,11 @@ export default async function ProductDetailPage({ params }: Props) {
           <RentalButtons />
         </div>
       </div>
-      <OtherProductsList nickname={userNickName} rentalSeq={rentalSeq} />
+      <OtherProductsList
+        initialProducts={otherProducts}
+        nickname={userNickName}
+        rentalSeq={rentalSeq}
+      />
     </div>
   )
 }

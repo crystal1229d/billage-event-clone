@@ -12,7 +12,7 @@ type LoadDataResponse = {
   categories: ProductCategory[]
 }
 
-const loadData = async (): Promise<LoadDataResponse> => {
+const loadInitialData = async (): Promise<LoadDataResponse> => {
   const [productsResponse, citiesResponse, categoriesResponse] =
     await Promise.all([getRentalProducts(), getCities(), getCategories()])
 
@@ -24,7 +24,8 @@ const loadData = async (): Promise<LoadDataResponse> => {
 }
 
 export default async function BillageProductPage() {
-  const { products, cities, categories }: LoadDataResponse = await loadData()
+  const { products, cities, categories }: LoadDataResponse =
+    await loadInitialData()
 
   return (
     <BillageProductSection

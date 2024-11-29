@@ -4,19 +4,24 @@
 import { useEffect, useState, useRef, useCallback } from 'react'
 import { throttle } from 'lodash'
 import { RentalProductDetail, OtherRentalProduct } from '@/types/rental-product'
-import styles from './OtherProductsList.module.css'
 import { getOtherRentalProducts } from '@/services/rental-product'
 import ProductItem from '@/components/billageProduct/ProductItem'
+import styles from './OtherProductsList.module.css'
 
 interface Props {
   nickname: RentalProductDetail['userNickName']
   rentalSeq: RentalProductDetail['rentalSeq']
+  initialProducts: OtherRentalProduct[]
 }
 
-// @TODO: 상세페이지에서 최초 상품데이터 로드해와서 뿌려주기
-export default function OtherProductsList({ nickname, rentalSeq }: Props) {
-  const [otherProducts, setOtherProducts] = useState<OtherRentalProduct[]>([])
-  const [page, setPage] = useState<number>(0)
+export default function OtherProductsList({
+  nickname,
+  rentalSeq,
+  initialProducts,
+}: Props) {
+  const [otherProducts, setOtherProducts] =
+    useState<OtherRentalProduct[]>(initialProducts)
+  const [page, setPage] = useState<number>(1)
   const [loading, setLoading] = useState<boolean>(false)
   const [hasMore, setHasMore] = useState<boolean>(true)
 

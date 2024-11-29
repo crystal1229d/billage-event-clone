@@ -1,9 +1,9 @@
 'use client'
 
+import { useState } from 'react'
 import { GooglePlayStoreUrl } from '@/constants'
-import { Fragment, useState } from 'react'
-import styles from './RentalButtons.module.css'
 import RentalCalendar from '../RentalCalendar'
+import styles from './RentalButtons.module.css'
 
 export default function RentalButtons() {
   const today = new Date()
