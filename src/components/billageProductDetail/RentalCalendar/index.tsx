@@ -1,12 +1,11 @@
 'use client'
 
 import Calendar from 'react-calendar'
-import styles from './RentalCalendar.module.css'
+import { GooglePlayStoreUrl } from '@/constants'
 import { Value, Range } from 'react-calendar/dist/esm/shared/types.js'
-import { formatDay } from 'react-calendar/dist/esm/shared/dateFormatter.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
-import { GooglePlayStoreUrl } from '@/constants'
+import styles from './RentalCalendar.module.css'
 
 interface Props {
   onDateChange: (range: { from: Date; to: Date }) => void
@@ -32,36 +31,38 @@ export default function RentalCalendar({ onDateChange, onClose }: Props) {
   }
 
   return (
-    <div className={styles['calendar-wrapper']}>
-      <div className={styles['calendar-header']}>
-        <span className={styles['calendar-title']}>대여 캘린더</span>
-        <button
-          className={styles['close-button']}
-          aria-label="Close"
-          onClick={onClose}
-        >
-          <FontAwesomeIcon icon={faXmark} />
-        </button>
-      </div>
+    <div className={styles['background']}>
+      <div className={styles['calendar-wrapper']}>
+        <div className={styles['calendar-header']}>
+          <span className={styles['calendar-title']}>대여 캘린더</span>
+          <button
+            className={styles['close-button']}
+            aria-label="Close"
+            onClick={onClose}
+          >
+            <FontAwesomeIcon icon={faXmark} />
+          </button>
+        </div>
 
-      <Calendar
-        onChange={dateChangeHandler}
-        formatDay={formatCalendarDay}
-        className={styles['react-calendar']}
-        locale="ko"
-        selectRange={true}
-        minDate={new Date()}
-        showNeighboringMonth={true}
-        minDetail="year"
-      />
+        <Calendar
+          onChange={dateChangeHandler}
+          formatDay={formatCalendarDay}
+          className={styles['react-calendar']}
+          locale="ko"
+          selectRange={true}
+          minDate={new Date()}
+          showNeighboringMonth={true}
+          minDetail="year"
+        />
 
-      <div className={styles['calendar-footer']}>
-        <button
-          className={styles['btn-rent-small']}
-          onClick={() => window.open(GooglePlayStoreUrl, '_blank')}
-        >
-          선택한 기간으로 대여하기
-        </button>
+        <div className={styles['calendar-footer']}>
+          <button
+            className={styles['btn-rent-small']}
+            onClick={() => window.open(GooglePlayStoreUrl, '_blank')}
+          >
+            선택한 기간으로 대여하기
+          </button>
+        </div>
       </div>
     </div>
   )
