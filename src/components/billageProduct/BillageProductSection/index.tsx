@@ -6,6 +6,7 @@ import { City, ProductCategory, RentalProduct } from '@/types/rental-product'
 import ControlPanner from '../ControlPanner/ControlPanner'
 import ProductItem from '../ProductItem'
 import { getRentalProducts } from '@/services/rental-product'
+import NoItem from '@/common/NoItem'
 import styles from './BillageProductSection.module.css'
 
 interface Props {
@@ -152,18 +153,18 @@ export default function BillageProductSection({
           <p>Loading...</p>
         </div>
       ) : !filteredProducts || filteredProducts.length === 0 ? (
-        <div className={styles['no-items']}>
-          <span>
-            {currentKeyword ? (
+        <NoItem
+          message={
+            currentKeyword ? (
               <>
                 <span className={styles['keyword']}>{currentKeyword}</span>
                 (으)로 검색된 대여물품이 없어요!
               </>
             ) : (
               '등록된 대여물품이 없습니다.'
-            )}
-          </span>
-        </div>
+            )
+          }
+        />
       ) : (
         <ul className={styles['product-list']}>
           {filteredProducts.map((product) => (

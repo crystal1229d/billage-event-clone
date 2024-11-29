@@ -6,6 +6,7 @@ import { throttle } from 'lodash'
 import { RentalProductDetail, OtherRentalProduct } from '@/types/rental-product'
 import { getOtherRentalProducts } from '@/services/rental-product'
 import ProductItem from '@/components/billageProduct/ProductItem'
+import NoItem from '@/common/NoItem'
 import styles from './OtherProductsList.module.css'
 
 interface Props {
@@ -90,9 +91,7 @@ export default function OtherProductsList({
       <h2>{nickname} 님의 다른 대여 상품도 있어요.</h2>
 
       {!otherProducts || otherProducts.length === 0 ? (
-        <div className={styles['no-items']}>
-          <span>등록된 대여물품이 없습니다.</span>
-        </div>
+        <NoItem message="등록된 대여물품이 없습니다." />
       ) : (
         <ul className={styles['products-list']}>
           {otherProducts.map((product) => (

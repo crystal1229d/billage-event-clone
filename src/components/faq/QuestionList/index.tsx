@@ -1,5 +1,6 @@
 import { FAQGuide } from '@/types'
 import NextImage from '@/common/NextImage'
+import NoItem from '@/common/NoItem'
 import {
   Accordion,
   AccordionContent,
@@ -14,7 +15,7 @@ interface Props {
 
 export default function QuestionList({ questions }: Props) {
   if (!questions || questions.length === 0) {
-    return <div className={styles['no-items']}></div>
+    return <NoItem filled={false} />
   }
   return (
     <div className={styles['qnalist-wrapper']}>
