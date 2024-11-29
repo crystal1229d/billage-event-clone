@@ -3,8 +3,7 @@
 import Calendar from 'react-calendar'
 import { GooglePlayStoreUrl } from '@/constants'
 import { Value, Range } from 'react-calendar/dist/esm/shared/types.js'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import CloseButton from '@/common/CloseButton'
 import styles from './RentalCalendar.module.css'
 
 interface Props {
@@ -35,13 +34,7 @@ export default function RentalCalendar({ onDateChange, onClose }: Props) {
       <div className={styles['calendar-wrapper']}>
         <div className={styles['calendar-header']}>
           <span className={styles['calendar-title']}>대여 캘린더</span>
-          <button
-            className={styles['close-button']}
-            aria-label="Close"
-            onClick={onClose}
-          >
-            <FontAwesomeIcon icon={faXmark} />
-          </button>
+          <CloseButton onClick={onClose} />
         </div>
 
         <Calendar

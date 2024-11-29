@@ -15,7 +15,6 @@
   background-color: #ff3855;
   transition: 0.5s ease;
 }
-
 .header-content {
   width: 1280px;
   margin: auto;
@@ -24,10 +23,10 @@
 }
 
 /* 화면 너비 줄어들었을 경우 처리 */
-.hamburger {
+.navbar-button {
   display: none;
 }
-.hamburger button {
+.navbar-button button {
   font-size: 25px;
   color: #fff;
   z-index: 1;
@@ -46,9 +45,13 @@
   .header-content {
     justify-content: space-between;
   }
-  .hamburger {
+
+  .navbar-button {
     display: flex;
     margin-left: auto;
     cursor: pointer;
+  }
+  .navbar-button button {
+    color: black;
   }
 }

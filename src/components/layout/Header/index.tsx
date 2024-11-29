@@ -24,7 +24,7 @@ export default function Header() {
       <div className={styles['header-content']}>
         <Logo linked={true} />
         <Navbar />
-        <div className={styles.hamburger} onClick={toggleMenu}>
+        <div className={styles['navbar-button']} onClick={toggleMenu}>
           {!isSideNavShown ? <HambugerMenu /> : <CloseButton />}
         </div>
         <SideNavbar isVisible={isSideNavShown} onClose={closeSideNav} />
