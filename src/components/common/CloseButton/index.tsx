@@ -12,10 +12,7 @@ export default function CloseButton({ className, onClick }: Props) {
     <button
       aria-label="Close"
       onClick={onClick ? onClick : undefined}
-      className={cn(
-        'text-black cursor-pointer text-[1.5rem] duration-700 ease-in-out',
-        className,
-      )}
+      className={cn('text-black cursor-pointer text-[1.5rem]', className)}
     >
       <FontAwesomeIcon icon={faXmark} />
     </button>
