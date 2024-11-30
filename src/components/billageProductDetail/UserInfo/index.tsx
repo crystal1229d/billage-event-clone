@@ -1,9 +1,7 @@
 import { CSSProperties } from 'react'
 import { RentalProductDetail } from '@/types/rental-product'
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
-import NextImage from '@/components/common/NextImage'
+import Icon from '@/common/Icon'
+import NextImage from '@/common/NextImage'
 import styles from './UserInfo.module.css'
 
 interface Props {
@@ -65,12 +63,7 @@ export default function UserInfo({
       </div>
       <div>
         <div className={styles['grade-name']}>
-          <FontAwesomeIcon
-            icon={faLocationDot}
-            width="1em"
-            height="1em"
-            color="#ff3855"
-          />
+          <Icon name="mapPin" color="#ff3855" />
           <span>{grade}</span>
         </div>
         <div className={styles['nickname']}>{nickname}</div>

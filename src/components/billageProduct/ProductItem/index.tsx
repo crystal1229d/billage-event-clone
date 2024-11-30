@@ -4,12 +4,7 @@ import { formatNumber } from '@/utils'
 import { useRouter } from 'next/navigation'
 import { RentalProduct } from '@/types/rental-product'
 import NextImage from '@/common/NextImage'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faLocationDot,
-  faHeart,
-  faEye,
-} from '@fortawesome/free-solid-svg-icons'
+import Icon from '@/common/Icon'
 import styles from './ProductItem.module.css'
 
 interface Props {
@@ -53,12 +48,7 @@ export default function ProductItem({ product }: Props) {
           <span>{formatNumber(dailyRentalFee)}원</span>
         </div>
         <div className={styles['location-wrapper']}>
-          <FontAwesomeIcon
-            icon={faLocationDot}
-            width="1em"
-            height="1em"
-            color="#777"
-          />
+          <Icon name="mapPin" />
           <div className={styles['location-list']}>
             {towns && towns.length > 0 && (
               <span title={JSON.stringify(towns)}>{towns.join(', ')}</span>
@@ -67,21 +57,11 @@ export default function ProductItem({ product }: Props) {
         </div>
         <div className={styles['count-wrapper']}>
           <div className={styles.like}>
-            <FontAwesomeIcon
-              width="1em"
-              height="1em"
-              color="#777"
-              icon={faHeart}
-            />
+            <Icon name="heart" />
             <span>{formatNumber(likeCnt)}</span>
           </div>
           <div className={styles.view}>
-            <FontAwesomeIcon
-              width="1em"
-              height="1em"
-              color="#777"
-              icon={faEye}
-            />
+            <Icon name="eye" />
             <span>{formatNumber(viewCnt)}</span>
           </div>
         </div>

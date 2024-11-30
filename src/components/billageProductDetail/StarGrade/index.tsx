@@ -1,6 +1,5 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { MAX_STARS } from '@/constants'
+import Icon from '@/common/Icon'
 import styles from './StarGrade.module.css'
 
 interface StarGradeProps {
@@ -12,8 +11,8 @@ export default function StarGrade({ point }: StarGradeProps) {
     <div className={styles['stars-wrapper']}>
       {[...Array(MAX_STARS)].map((_, index) => (
         <div key={index}>
-          <FontAwesomeIcon
-            icon={faStar}
+          <Icon
+            name="star"
             className={
               index < Math.ceil(point)
                 ? styles['star-filled']

@@ -7,10 +7,9 @@ import {
   OtherRentalProductsListResponse,
   RentalProductDetailResponse,
 } from '@/types/rental-product'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLocationDot, faTag } from '@fortawesome/free-solid-svg-icons'
-
 import NextImage from '@/common/NextImage'
+import Icon from '@/common/Icon'
+
 import ProductImages from '@/components/billageProductDetail/ProductImages'
 import UserInfo from '@/components/billageProductDetail/UserInfo'
 import StarGrade from '@/components/billageProductDetail/StarGrade'
@@ -83,12 +82,7 @@ export default async function ProductDetailPage({ params }: Props) {
           </div>
 
           <div className={styles['category-wrapper']}>
-            <FontAwesomeIcon
-              icon={faTag}
-              width="1em"
-              height="1em"
-              color="#777"
-            />
+            <Icon name="tag" />
             {categoryInfo &&
               categoryInfo.length > 0 &&
               categoryInfo.map(({ categoryIdx, categoryName }, index) => (
@@ -104,12 +98,7 @@ export default async function ProductDetailPage({ params }: Props) {
           </div>
 
           <div className={styles['location-wrapper']}>
-            <FontAwesomeIcon
-              icon={faLocationDot}
-              width="1em"
-              height="1em"
-              color="#777"
-            />
+            <Icon name="mapPin" />
             <div className={styles['location-list']}>
               {towns &&
                 towns.length > 0 &&
