@@ -1,6 +1,7 @@
 'use client'
 
 import { GooglePlayStoreUrl } from '@/constants'
+import BaseButton from '@/common/BaseButton'
 import NextImage from '@/common/NextImage'
 
 export default function GooglePlayButton() {
@@ -9,13 +10,13 @@ export default function GooglePlayButton() {
   }
 
   return (
-    <button onClick={handleClick}>
+    <BaseButton onClick={handleClick}>
       <NextImage
         src={`/assets/images/googlePlayBtn.png`}
         width={162}
         height={50}
         alt="GooglePlay"
       />
-    </button>
+    </BaseButton>
   )
 }

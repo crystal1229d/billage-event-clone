@@ -1,6 +1,7 @@
 'use client'
 
 import { AppStoreUrl } from '@/constants'
+import BaseButton from '@/common/BaseButton'
 import NextImage from '@/common/NextImage'
 
 export default function AppStoreButton() {
@@ -9,13 +10,13 @@ export default function AppStoreButton() {
   }
 
   return (
-    <button onClick={handleClick}>
+    <BaseButton onClick={handleClick}>
       <NextImage
         src={`/assets/images/iosBtn.png`}
         width={158}
         height={50}
         alt="AppStore"
       />
-    </button>
+    </BaseButton>
   )
 }

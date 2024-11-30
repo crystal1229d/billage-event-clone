@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { GooglePlayStoreUrl } from '@/constants'
 import RentalCalendar from '../RentalCalendar'
 import styles from './RentalButtons.module.css'
+import BaseButton from '@/components/common/BaseButton'
 
 export default function RentalButtons() {
   const today = new Date()
@@ -18,18 +19,20 @@ export default function RentalButtons() {
 
   return (
     <div className={styles['rental-wrapper']}>
-      <button
-        className={styles['btn-calendar']}
+      <BaseButton
+        type="bordered"
+        className={styles['rental-button']}
         onClick={() => setIsCalendarVisible(true)}
       >
         대여 캘린더
-      </button>
-      <button
-        className={styles['btn-rent']}
+      </BaseButton>
+      <BaseButton
+        className={styles['rental-button']}
+        type="filled"
         onClick={() => window.open(GooglePlayStoreUrl, '_blank')}
       >
         대여하기
-      </button>
+      </BaseButton>
 
       {isCalendarVisible && (
         <RentalCalendar

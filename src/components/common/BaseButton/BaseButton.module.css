@@ -1,0 +1,24 @@
+.base {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+  font-family: 'Pretendard-Medium';
+  color: #1f1f1f;
+
+  transition: 0.5s ease;
+  cursor: pointer;
+}
+
+.bordered {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 10px;
+}
+
+.filled {
+  background: #ff3855;
+  color: #fff;
+  border-radius: 10px;
+}

@@ -8,30 +8,10 @@
   row-gap: 0;
   box-sizing: border-box;
 }
-.rental-wrapper .btn-calendar {
+.rental-wrapper .rental-button {
   width: 100%;
   height: 57px;
   margin: 0 !important;
-
-  background: #fff;
-  border: 1px solid #e8e8e8;
-  color: #1f1f1f;
-  font-size: 18px;
-  font-family: 'Pretendard-Medium';
-  transition: 0.5s ease;
-  border-radius: 10px;
-}
-.rental-wrapper .btn-rent {
-  width: 100%;
-  height: 57px;
-  margin: 0 !important;
-
-  font-size: 18px;
-  font-family: 'Pretendard-Medium';
-  transition: 0.5s ease;
-  background: #ff3855;
-  color: #fff;
-  border-radius: 10px;
 }
 
 @media (max-width: 844px) {

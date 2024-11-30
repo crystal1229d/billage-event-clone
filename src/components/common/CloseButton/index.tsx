@@ -1,6 +1,7 @@
+import { cn } from '@/lib/utils'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
-import { cn } from '@/lib/utils'
+import BaseButton from '@/common/BaseButton'
 
 interface Props {
   className?: string
@@ -9,12 +10,12 @@ interface Props {
 
 export default function CloseButton({ className, onClick }: Props) {
   return (
-    <button
-      aria-label="Close"
+    <BaseButton
       onClick={onClick ? onClick : undefined}
-      className={cn('text-black cursor-pointer text-[1.5rem]', className)}
+      className={cn('text-2xl', className)}
+      ariaLabel="Close"
     >
       <FontAwesomeIcon icon={faXmark} />
-    </button>
+    </BaseButton>
   )
 }
