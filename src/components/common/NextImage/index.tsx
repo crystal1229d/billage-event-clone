@@ -23,8 +23,8 @@ const NextImage = ({
       priority={priority}
       className={cn(
         className,
-        'duration-700 ease-in-out',
-        isLoading ? 'scale-105 blur-lg' : 'scale-100 blur-0',
+        'duration-200 ease-in-out',
+        isLoading ? 'scale-105 blur-sm' : 'scale-100 blur-0',
       )}
       onLoad={() => setLoading(false)}
     />

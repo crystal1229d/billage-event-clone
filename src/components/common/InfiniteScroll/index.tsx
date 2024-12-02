@@ -1,56 +1,57 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 
-import { useState, useEffect, useRef, useCallback } from 'react'
+import React, {
+  useEffect,
+  useState,
+  useRef,
+  useCallback,
+  ReactNode,
+} from 'react'
+import { throttle } from 'lodash'
+import styles from './InfiniteScroll.module.css'
 
-const fetchMoreData = async (page: number, limit: number) => {
-  const res = await fetch(
-    `https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=${limit}`,
-  )
-  const newData = await res.json()
-  return newData
+interface Props {
+  loadMore: (page: number) => Promise<any>
+  hasMore: boolean
+  loading: boolean
+  children: ReactNode
+  initialPage?: number
 }
 
-const InfiniteScroll = () => {
-  const [data, setData] = useState<any[]>([])
-  const [page, setPage] = useState(1)
-  const [loading, setLoading] = useState(false)
-  const observerRef = useRef<IntersectionObserver | null>(null)
+export default function InfiniteScroll({
+  loadMore,
+  hasMore,
+  loading,
+  children,
+  initialPage = 0,
+}: Props) {
+  const [page, setPage] = useState<number>(initialPage)
   const loadMoreRef = useRef<HTMLDivElement | null>(null)
+  const observerRef = useRef<IntersectionObserver | null>(null)
 
-  useEffect(() => {
-    const loadInitialData = async () => {
-      setLoading(true)
-      const initialData = await fetchMoreData(1, 10)
-      setData(initialData)
-      setLoading(false)
-    }
-
-    loadInitialData()
-  }, [])
-
-  const loadMore = async () => {
-    setLoading(true)
-    const newPage = page + 1
-    const newData = await fetchMoreData(newPage, 10)
-    setData((prevData) => [...prevData, ...newData])
-    setPage(newPage)
-    setLoading(false)
-  }
+  const throttledLoadMore = useCallback(
+    throttle(async () => {
+      if (loading || !hasMore) return
+      const newPage = page + 1
+      await loadMore(newPage)
+      setPage(newPage)
+    }, 1000),
+    [page, loading, hasMore],
+  )
 
   const handleObserver = useCallback(
     (entries: IntersectionObserverEntry[]) => {
       const target = entries[0]
-      if (target.isIntersecting) {
-        loadMore()
+      if (target.isIntersecting && !loading && hasMore) {
+        throttledLoadMore()
       }
     },
-    [loadMore, page],
+    [throttledLoadMore, loading, hasMore],
   )
 
   useEffect(() => {
     observerRef.current = new IntersectionObserver(handleObserver, {
-      rootMargin: '20px',
+      rootMargin: '25px',
     })
 
     if (loadMoreRef.current) {
@@ -66,18 +67,11 @@ const InfiniteScroll = () => {
 
   return (
     <div>
-      <ul>
-        {data.map((item) => (
-          <li key={item.id}>{item.title}</li>
-        ))}
-      </ul>
-      <div
-        ref={loadMoreRef}
-        style={{ height: '20px', backgroundColor: 'transparent' }}
-      />
-      {loading && <p>Loading...</p>}
+      {children}
+      {hasMore && (
+        <div ref={loadMoreRef} className={styles['load-more-placeholder']} />
+      )}
+      {loading && <p className={styles['loading']}>Loading more...</p>}
     </div>
   )
 }
-
-export default InfiniteScroll
