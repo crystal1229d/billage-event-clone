@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 
 import { useState, useEffect, useRef, useCallback } from 'react'
@@ -44,7 +45,6 @@ const InfiniteScroll = () => {
         loadMore()
       }
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [loadMore, page],
   )
 
@@ -59,7 +59,6 @@ const InfiniteScroll = () => {
 
     return () => {
       if (loadMoreRef.current) {
-        // eslint-disable-next-line react-hooks/exhaustive-deps
         observerRef.current?.unobserve(loadMoreRef.current)
       }
     }

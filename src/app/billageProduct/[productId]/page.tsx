@@ -13,8 +13,8 @@ import Icon from '@/common/Icon'
 import ProductImages from '@/components/billageProductDetail/ProductImages'
 import UserInfo from '@/components/billageProductDetail/UserInfo'
 import StarGrade from '@/components/billageProductDetail/StarGrade'
-import RentalButtons from '@/components/billageProductDetail/RentalButtons'
 import OtherProductsList from '@/components/billageProductDetail/OtherProductsList'
+import RentalButtons from '@/components/billageProductDetail/RentalButtons'
 
 import styles from './page.module.css'
 
