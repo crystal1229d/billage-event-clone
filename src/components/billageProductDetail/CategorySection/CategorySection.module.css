@@ -1,0 +1,11 @@
+.category-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1px;
+
+  font-size: 15px;
+  color: #777;
+  font-family: 'Pretendard-Medium';
+  line-height: 1rem;
+}

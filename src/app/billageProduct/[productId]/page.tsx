@@ -1,22 +1,42 @@
+import { Metadata } from 'next'
 import { formatNumber } from '@/utils'
-import {
-  getOtherRentalProducts,
-  getRentalProductDetail,
-} from '@/services/rental-product'
 import {
   OtherRentalProductsListResponse,
   RentalProductDetailResponse,
 } from '@/types/rental-product'
+import {
+  getOtherRentalProducts,
+  getRentalProductDetail,
+} from '@/services/rental-product'
 import NextImage from '@/common/NextImage'
-import Icon from '@/common/Icon'
 
 import ProductImages from '@/components/billageProductDetail/ProductImages'
-import UserInfo from '@/components/billageProductDetail/UserInfo'
-import StarGrade from '@/components/billageProductDetail/StarGrade'
-import OtherProductsList from '@/components/billageProductDetail/OtherProductsList'
+import UserProfileSection from '@/components/billageProductDetail/UserProfileSection'
+import CategorySection from '@/components/billageProductDetail/CategorySection'
+import LocationSection from '@/components/billageProductDetail/LocationSection'
 import RentalButtons from '@/components/billageProductDetail/RentalButtons'
+import OtherProductsSection from '@/components/billageProductDetail/OtherProductsSection'
 
 import styles from './page.module.css'
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { productId } = params
+
+  const productsResponse: RentalProductDetailResponse =
+    await getRentalProductDetail(+productId)
+  const product = productsResponse.data
+
+  return {
+    title: `👀 저렴하게 ${product.title} 사용해보려면?`,
+    description: `빌리쥐에서 하루 ${formatNumber(product.dailyFee)}원에 ${product.title}을(를) 대여하세요!`,
+    openGraph: {
+      title: `${product.title}`,
+      description: `빌리쥐에서 하루 ${formatNumber(product.dailyFee)}원에 ${product.title}을(를) 대여하세요!`,
+      images:
+        product.images.length > 0 ? product.images[0].imageUrl : undefined,
+    },
+  }
+}
 
 interface Props {
   params: {
@@ -26,6 +46,7 @@ interface Props {
 
 export default async function ProductDetailPage({ params }: Props) {
   const { productId } = params
+
   const productsResponse: RentalProductDetailResponse =
     await getRentalProductDetail(+productId)
   const product = productsResponse.data
@@ -58,16 +79,14 @@ export default async function ProductDetailPage({ params }: Props) {
         <ProductImages images={images} />
 
         <div className={styles['product-info-wrapper']}>
-          <div className={styles['user-info-wrapper']}>
-            <UserInfo
-              nickname={userNickName}
-              profileImg={userProfileImage}
-              score={activityScore}
-              maxScore={maxScore}
-              grade={grade}
-            />
-            <StarGrade point={userStarPoint} />
-          </div>
+          <UserProfileSection
+            nickname={userNickName}
+            profileImg={userProfileImage}
+            score={activityScore}
+            maxScore={maxScore}
+            grade={grade}
+            starPoint={userStarPoint}
+          />
 
           <div className={styles['product-name']}>{title}</div>
 
@@ -81,40 +100,18 @@ export default async function ProductDetailPage({ params }: Props) {
             <span>{formatNumber(dailyFee)}원</span>
           </div>
 
-          <div className={styles['category-wrapper']}>
-            <Icon name="tag" />
-            {categoryInfo &&
-              categoryInfo.length > 0 &&
-              categoryInfo.map(({ categoryIdx, categoryName }, index) => (
-                <span key={categoryIdx}>
-                  {categoryName}
-                  {index < categoryInfo.length - 1 && ', '}
-                </span>
-              ))}
-          </div>
+          <CategorySection categories={categoryInfo} />
 
           <div>
             <p dangerouslySetInnerHTML={{ __html: formattedContent }} />
           </div>
 
-          <div className={styles['location-wrapper']}>
-            <Icon name="mapPin" />
-            <div className={styles['location-list']}>
-              {towns &&
-                towns.length > 0 &&
-                towns.map(({ townSeq, townName }, index) => (
-                  <span key={townSeq}>
-                    {townName}
-                    {index < towns.length - 1 && ', '}
-                  </span>
-                ))}
-            </div>
-          </div>
+          <LocationSection towns={towns} />
 
           <RentalButtons />
         </div>
       </div>
-      <OtherProductsList
+      <OtherProductsSection
         initialProducts={otherProducts}
         nickname={userNickName}
         rentalSeq={rentalSeq}

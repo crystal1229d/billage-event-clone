@@ -1,0 +1,13 @@
+.location-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-size: 15px;
+  color: #777;
+  text-align: left;
+  font-family: 'Pretendard-Medium';
+  line-height: 1rem;
+  word-break: keep-all;
+}

@@ -8,7 +8,7 @@ import React, {
   ReactNode,
 } from 'react'
 import { throttle } from 'lodash'
-import styles from './InfiniteScroll.module.css'
+import ProductsSkeleton from '@/common/ProductsSkeleton'
 
 interface Props {
   loadMore: (page: number) => Promise<any>
@@ -51,7 +51,7 @@ export default function InfiniteScroll({
 
   useEffect(() => {
     observerRef.current = new IntersectionObserver(handleObserver, {
-      rootMargin: '25px',
+      rootMargin: '5px',
     })
 
     if (loadMoreRef.current) {
@@ -68,10 +68,8 @@ export default function InfiniteScroll({
   return (
     <div>
       {children}
-      {hasMore && (
-        <div ref={loadMoreRef} className={styles['load-more-placeholder']} />
-      )}
-      {loading && <p className={styles['loading']}>Loading more...</p>}
+      {hasMore && <div ref={loadMoreRef} />}
+      {loading && <ProductsSkeleton />}
     </div>
   )
 }

@@ -1,9 +1,10 @@
 import { MAX_STARS } from '@/constants'
+import { RentalProductDetail } from '@/types/rental-product'
 import Icon from '@/common/Icon'
 import styles from './StarGrade.module.css'
 
 interface StarGradeProps {
-  point: number
+  point: RentalProductDetail['userStarPoint']
 }
 
 export default function StarGrade({ point }: StarGradeProps) {

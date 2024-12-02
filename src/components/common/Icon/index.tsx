@@ -40,5 +40,11 @@ export default function Icon({ name, className, ...props }: Props) {
     return null
   }
 
-  return <FontAwesomeIcon icon={icon} className={cn(className)} {...props} />
+  return (
+    <FontAwesomeIcon
+      icon={icon}
+      className={cn(styles.icon, className)}
+      {...props}
+    />
+  )
 }

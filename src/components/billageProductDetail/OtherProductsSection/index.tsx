@@ -15,7 +15,7 @@ interface Props {
   initialProducts: OtherRentalProduct[]
 }
 
-export default function OtherProductsList({
+export default function OtherProductsSection({
   nickname,
   rentalSeq,
   initialProducts,
