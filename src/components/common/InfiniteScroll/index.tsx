@@ -51,7 +51,7 @@ export default function InfiniteScroll({
 
   useEffect(() => {
     observerRef.current = new IntersectionObserver(handleObserver, {
-      rootMargin: '5px',
+      rootMargin: '25px',
     })
 
     if (loadMoreRef.current) {
